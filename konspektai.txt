@@ -1,0 +1,24 @@
+2025-10-27 - 4 paskaita - HTML ir GitHub
+
+Terminal command ls - parodo folderio (pvz grupe5) turini/kontenta
+
+Terminal command cd (ir folderio pavadinimas) - nuveda i ta folderi
+
+Arrows klavisai padeda naviguoti terminale, pvz arrow i virsu - paskutine naudota komanda
+
+Terminal command cd .. - griztam viena folderi atgal
+
+HTML ir CSS failu aprisimas: vyksta html failo head'e <head>. Rasyti li ir spausti "li CSS". Ir pervadiname .css faila <head>'e pagal ta konkretu faila
+
+-------------------------------
+
+Git komandos:
+git init - suinicializuoja lokalią git repozitoriją (sukurią .git aplanką tame folderyje, kuriame mes dirbame tuo metu)
+git add failas.md - stage'ina failą
+git add . - stage'ina visus failus
+git commit -m "zinute" - komitina kodą
+
+git branch --delete pavadinimas - branch pašalinimas
+git branch - pažiūrėti kokie branch'ai egzistuoja ir pamatyti dabar aktyvų
+
+

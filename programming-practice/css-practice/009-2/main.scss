@@ -1,0 +1,223 @@
+$xl: 1200px;
+$lg: 992px;
+$md: 768px;
+$sm: 480px;
+
+
+$padding-big: 24px;
+$padding-medium: 16px;
+$padding-small: 8px;
+
+
+$red: #ED254E;
+$yellow: #F9DC5C;
+$light-green: #C2EABD;
+$blue: #011936;
+$gray: #465362;
+$creme: #FFE4C4;
+$pale-green: #2F4F4F;
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background-color: $pale-green;
+}
+
+.logo {
+    color: white;
+}
+
+ul,
+li,
+p,
+a {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    /* color: #1e90ff; */
+    // color: $meniu-spalva;
+}
+
+#app {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// Instaliuotas SCSS
+
+header {
+    width: 100%;
+    max-width: $xl;
+    padding: 0 $padding-medium;
+    height: 90px;
+    background-color: $blue;
+    display: flex;
+    align-items: center;
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        padding: $padding-small 0;
+    }
+
+    &>nav:nth-child(1) {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+
+        ul.desktop {
+            display: none;
+            column-gap: 9px;
+
+            @media (min-width: $sm) {
+                display: flex;
+        }
+
+            li {
+                a {
+                    font-size: 21px;
+                    color: $creme;
+                }
+            }
+
+            li.sub {
+                position: relative;
+
+                ul {
+                    position: absolute;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.3s ease-in-out;
+                    background-color: $blue;
+                    min-width: 200px;
+
+                    li {
+                        padding: 5px $padding-big;
+                    }
+                }
+
+                &:hover {
+                    ul {
+                        max-height: 150px;
+                    }
+                }
+            }
+
+            // @media (max-width: $sm) {
+            //     display: none;
+            // }
+        }
+
+        @media (min-width: $sm) {
+            display: flex;
+        }
+
+        label.hamburger {
+            height: 25px;
+            display: block;
+
+            div {
+                display: block;
+                position: relative;
+                height: 5px;
+                width: 30px;
+                background-color: $light-green;
+
+                &::before,
+                &::after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    height: 5px;
+                    width: 30px;
+                    background-color: $light-green;
+                }
+
+                &::before {
+                    bottom: -10px;
+                }
+
+                &:after {
+                    bottom: -20px;
+                }
+            }
+
+            @media (min-width: $sm) {
+                display: none;
+            }
+        }
+    }
+
+
+    &>nav:nth-child(3) {
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: $gray;
+        right: -300px;
+        transition: all 0.4s;
+
+        ul.mobile {
+            display: flex;
+            row-gap: 30px;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: center;
+            width: 300px;
+            padding-left: 36px;
+
+            li {
+                a {
+                    font-size: 40px;
+                    color: $yellow;
+                }
+            }
+
+            li.sub {
+
+                li {
+                    padding: 0 30px;
+
+                    a {
+                        font-size: 30px;
+                        color: $yellow;
+                    }
+                }
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 25px;
+            font-weight: 700;
+            color: $yellow;
+            background-color: #FFE4C470;
+            padding: 5px 10px;
+            border-radius: 5px;
+            user-select: none;
+        }
+    }
+
+    &>input:nth-child(2) {
+        display: none;
+
+        &:checked {
+
+            &+nav {
+                right: 0;
+            }
+        }
+    }
+}

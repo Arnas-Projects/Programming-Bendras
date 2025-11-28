@@ -1,0 +1,94 @@
+body {
+    background-image:url('http://localhost:5500/tasks/apple.jpg');
+    background-repeat: no-repeat;
+    background-position: center -500px;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.linkas {
+    text-decoration: none;
+    color: darkorange;
+    font-size: 30px;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    border: 3px solid black;
+}
+
+.box.red {
+    background-color: #dc143c70;   /* du paskutiniai skaitmenys nurodo spalvos PERMATOMUMA */
+    border-color: crimson;
+}
+
+.box.blue {
+    background-color: #6495ed70;
+    border-color: cornflowerblue;
+}
+
+section {
+    margin: 50px;
+    border: 1px solid gray;
+    min-height: 400px;
+    position: relative;
+}
+
+.box1 {
+    position: relative;
+    top: 30px;
+    left: 100px;
+}
+
+.box2 {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.box3 {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+h1 span {
+    font-size: 18px;
+    position: relative;
+    bottom: 22px;
+    right: 2px;
+}
+
+.big-box {
+    border: 5px solid darkorange;
+    display: inline-block;
+    position: relative;
+}
+
+.big-box img {
+    width: 250px;
+}
+
+.big-box h2 {
+    position: absolute;
+    bottom: 60px;
+    left: 30px;
+    background-color: #87cefa70;
+    padding: 12px;
+}
+
+.box.red.box3 {
+    background-color: #0000ff70;
+    border-color: blue;
+}
+
+.box.green {
+    border: 3px solid darkgreen;
+    background-color: #00640070;
+    border-radius: 90px;
+}

@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    height: 500vh;
+}
+
+:root {
+    --main-color-light: #9A54BC;
+    --main-color-dark: #60267F; 
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.topPurple {
+    width: 100%; 
+    height: 20px;
+    text-align: center;
+    background-color: #60267F;
+    color: white;
+    font-size: 10px;
+    padding: 3px 0 0 0;
+}
+
+.topHeader {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    box-shadow: 1px 5px 5px -4px #6969694d;
+    -webkit-box-shadow: 1px 5px 5px -4px #6969694d;
+    -moz-box-shadow: 1px 5px 5px -4px #6969694d;
+}
+
+.menu {
+    width: 670px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.linksContainer {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+    color: #2B0236;
+    font-weight: 700;
+}
+
+.headerButton {
+    padding: 6px;
+    background-color: transparent;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid var(--main-color-light);
+    color: var(--main-color-light);
+    cursor: pointer;
+}
+
+.headerButton:hover {
+    background-color: var(--main-color-light);
+    color: white;
+}
+
+.firstSection {
+    flex-direction: column;
+    height: 300px;
+    row-gap: 23px;
+}
+
+.firstSection h1 {
+    font-size: 56px;
+    text-align: center;
+    color: #2B0236;
+    letter-spacing: 1.2px;
+}
+
+.firstSection button {
+    padding: 15px;
+    background-color: var(--main-color-light);
+    border: 1px solid var(--main-color-light);
+    color: white;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.firstSection button:hover {
+    background-color: transparent;
+    color: #9A54BC;
+}
+
+.sectionElipses {
+    position: relative;
+    /* background-color: lightgreen; */
+    height: 500px;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.ellipseSmall {
+    top: 75px;
+}
+
+.phone {
+    top: 85px;
+}
+
+.phoneLogo {
+    top: 195px;
+}
+
+.buttonSectionElipses {
+    top: 370px;
+    padding: 5px 10px;
+    color: var(--main-color-light);
+    border: 2px solid var(--main-color-light);
+    background-color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.buttonSectionElipses:hover {
+    background-color: var(--main-color-light);
+    color: white;
+}
+
+.sectionIcons {
+    flex-direction: column;
+    gap: 50px;
+}
+
+.containerIcons {
+    justify-content: space-evenly;
+    width: 70%;
+}
+
+.containerIcons img:not(.icon4, .icon5) {
+    width: 100px; 
+}
+
+.icon4 {
+    width: 80px;
+}
+
+.icon5 {
+    width: 150px;
+}
+
+
+.sectionCollabHelp {
+    margin-top: 100px;
+    flex-direction: column;
+}
+
+.collabHelpMainContainer {
+    height: 500px;
+    width: 80%;
+    align-items: flex-start;
+    margin-top: 45px;
+    justify-content: space-evenly;
+}
+
+.collabHelpLeftContainer {
+    height: 500px;
+    width: 500px;
+    margin: 16px 0px 0px 0px;  
+    flex-direction: column;
+    justify-content: flex-start;  
+}
+
+.collabHelpButtonContainer {
+    width: 100%;
+    padding: 2px;
+    border-radius: 3px;
+    box-shadow: -2px 7px 8px -4px rgba(204,199,199,0.49);
+    -webkit-box-shadow: -2px 7px 8px -4px rgba(204,199,199,0.49);
+    -moz-box-shadow: -2px 7px 8px -4px rgba(204,199,199,0.49);
+
+}
+
+.collabHelpButtonContainer button {
+    width: 50%;
+    background-color: white;
+    border: 2px solid white;
+    padding: 7px;
+    border-radius: 3px;
+    font-weight: 600;  
+}
+
+.collabHelpButtonContainer button:hover{
+    background-color: var(--main-color-dark);
+    border: 4px solid var(--main-color-light);
+    color: white;
+    cursor: pointer;
+}
+
+.collabHelpTextContainer {
+    flex-direction: column;
+    gap: 10px;
+    width: 95%;
+    margin-top: 45px;
+}
+
+.collabHelpTextContainer p {
+    background-color: #F2F2F2;
+    padding: 1.8rem 1rem;
+    text-align: left;
+    width: 100%;
+}
+
+.semiBold {
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.collabHelpImg img {
+    width: 300px;
+}
+
+.sectionVideo {
+    margin-top: 100px;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.sectionVideo p {
+    width: 70%;
+    text-align: center;
+
+}
+
+.sectionVideo iframe {
+    min-width: 1000px;
+    height: 600px;
+    border: 4px solid crimson;
+    border-radius: 30px;
+}
+
+.projectsDone {
+    margin-top: 100px;
+    flex-direction: column;
+} 
+
+.cardContainer {
+    margin-top: 40px;
+    width: 75%;
+    justify-content: space-evenly;
+}
+
+.card {
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+}
+
+.cardContainer img {
+    width: 400px;
+    height: 300px;
+}
+ 
+.card p {
+    color: var(--main-color-dark);
+    font-weight: 700;
+    padding-left: 15px;
+}
+
+.card span {
+    font-weight: 400;
+    padding-left: 15px;
+}
+

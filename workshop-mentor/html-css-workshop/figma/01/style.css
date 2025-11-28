@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.topPurple {
+    width: 100%;
+    height: 20px;
+    background-color: #60267F;
+    font-size: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topText {
+    color: #FFFFFF;
+    font: DM Sans;
+}

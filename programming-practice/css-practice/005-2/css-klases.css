@@ -1,0 +1,72 @@
+
+/* body kuo maziau settings'u!! */
+body {
+    font-weight: 700;
+    font-family: "Playball", cursive;
+    font-size: 26px;
+    letter-spacing: 5px;
+    margin: 0;
+}
+
+h1 {
+    font-weight: 900;
+    letter-spacing: 10px;
+}
+
+p {
+    color: skyblue;
+}
+
+p.mano-tekstas-1,
+h6.mano-tekstas-1 {
+    color: darkgreen;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
+
+h6.mano-tekstas-1 {
+    text-transform: lowercase;
+}
+
+.mano-tekstas-2 {
+    color: chocolate;
+}
+
+.raudonas-tekstas {
+    color: crimson!important;
+    
+}
+
+section div.box p {
+    color: black;
+    background-color: crimson;
+}
+
+section {
+    font-size: 0;
+    letter-spacing: 0;
+}
+
+.box {
+    box-sizing: border-box;
+    border: 2px solid black;
+    width: calc(33.3333% - 30px);
+    height: 190px;
+    min-width: 250px;
+    font-size: 18px;
+    font-family: monospace;
+    background-color: #80808058;
+    display: inline-block;
+    vertical-align: top;
+    margin: 15px 15px;
+}
+
+img {
+    width: 120px;
+}
+
+.box-p {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+}

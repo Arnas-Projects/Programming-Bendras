@@ -1,0 +1,22 @@
+h1 span {
+    color: navy;
+}
+
+span {
+    color: darkgreen;
+    font-size: 26px;
+}
+
+span {
+    color: skyblue;
+    font-size: 26px;
+}
+
+h1 {
+    color: crimson;
+    font-size: 46px;
+    font-weight: 900;
+    font-family: "Playball", cursive;
+    letter-spacing: 10px;
+}
+

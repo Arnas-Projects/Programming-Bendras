@@ -1,0 +1,112 @@
+
+
+body {
+    background-image: url('https://img.pikbest.com/wp/202405/hexagon-abstract-glowing-3d-hexagonal-pattern-on-black-background_9831471.jpg!w700wp');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: orange;
+}
+
+.linkas {
+    text-decoration: none;
+    color: coral;
+    font-size: 30px;
+    position: absolute;
+    top: 250px;
+    left: 440px;
+}
+
+div.sticky {
+    margin-bottom: 40px;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    border: 3px solid black;
+}
+
+.box.green {
+    background-color: #00640070;
+    border-color: darkgreen;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 5px;
+}
+
+.box.red {
+    background-color: #dc143c70;
+    border-color: crimson;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 5px;
+}
+
+.box.blue {
+    box-sizing: border-box;
+    background-color: #6495ed70;
+    border-color: cornflowerblue;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 5px;
+}
+
+section {
+    margin: 50px;
+    border: 1px solid gray;
+    min-height: 400px;
+    position: relative;
+}
+
+.box1 {
+    position: relative;
+    top: 30px;
+    left: 100px;
+}
+
+.box2 {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.box3 {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+}
+
+h1 {
+    margin-left: 50px;
+    font-size: 50px;
+}
+
+h1 span {
+    position: relative;
+    bottom: 28px;
+    right: 3px;
+    font-size: 23px;
+}
+
+.big-box {
+    border: 3px solid darkorange;
+    display: inline-block;
+    position: relative;
+}
+
+.big-box img {
+    width: 400px;
+}
+
+.big-box h2 {
+    position: absolute;
+    bottom: 150px;
+    left: 25px;
+    color: white;
+    background-color:#640057aa;
+    padding: 7px;
+}

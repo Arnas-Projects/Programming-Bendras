@@ -1,0 +1,27 @@
+{
+    "cSpell.language": "en,lt",
+    "cSpell.minWordLength": 2,
+    "cSpell.allowCompoundWords": false,
+    "cSpell.caseSensitive": true,
+    
+    "files.exclude": {
+    "**/.gitignore": false,
+    "konspektai.txt": true,
+    // "**/.git": true, //         // hides .git folder
+    // "**/.DS_Store": true, //    // hides macOS junk
+    // "**/thumbs.db": true, //     // hides Windows junk
+    // "unrelatedFile.txt": true, // // example: hide a specific file
+    // "notes/": true //             // example: hide a folder
+
+  }
+}
+
+
+
+    // "**/.git": true, //         // hides .git folder
+    // "**/.DS_Store": true, //    // hides macOS junk
+    // "**/thumbs.db": true, //     // hides Windows junk
+    // "unrelatedFile.txt": true, // // example: hide a specific file
+    // "notes/": true //             // example: hide a folder
+
+    
