@@ -172,12 +172,41 @@ for (i = 0; i < 14; i++) {
 // Task # 8 ---------------------------------------------------------------------------------------------------------
 console.log('\nTask #8');
 
+const section8 = document.querySelector('section.task8-sect');
+
+for (let i = 0; i < 41; i++) {
+
+    const symbolRow = document.createElement('div');
+    let rowText = '';
+    symbolRow.classList.add('task8-div1');
+    section8.appendChild(symbolRow);
+
+    for (let i2 = 0; i2 < 41; i2++) {
+        rowText += '■';
+        symbolRow.innerText = rowText;
+    }
+}
 
 
 
+// const section8 = document.querySelector('section.task8-sect');
 
+// for (i = 0; i < 40; i++) {
+    
+//     const symbolRow = document.createElement('div');
+//     let rowText = '';
+//     symbolRow.classList.add('task8-div1');
+//     section8.appendChild(symbolRow);
 
+    
+//     for (i2 = 0; i2 < 41; i2++) {
 
+//         const symbolColumn = document.createElement('div');
+//         symbolColumn.classList.add('task8-div2');
+//         symbolColumn.innerText = '■';
+//         symbolRow.appendChild(symbolColumn);
+//     }
+// }
 
 
 
