@@ -314,6 +314,25 @@ if (a <= b && a <= c && a <= d) {
 console.log ('Išrūšiuoti skaičiai:', first, second, third, fourth);
 
 
+// Bonus Task 2 ------------------------------------------------------------------------------------
+console.log ('\nBonus Task 2');
+
+let age;
+
+const RandomAge = rand(5, 70);
+let TicketPrice;
+
+if (RandomAge <= 12) {
+    TicketPrice = 10;
+} else if (RandomAge > 12 && RandomAge <= 64) {
+    TicketPrice = 15;
+} else {
+    TicketPrice = 12;
+}
+
+console.log('Age:', RandomAge, '\n', 'Ticket price:', TicketPrice);
+
+
 
 
 
