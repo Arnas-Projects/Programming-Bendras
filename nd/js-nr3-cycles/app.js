@@ -160,9 +160,9 @@ for (i = 0; i < 14; i++) {
     div1.style.margin = '25px';
     div1.style.backgroundColor = randColor();
     div1.style.position = 'absolute';
-    div1.style.top = '150px';
+    div1.style.top = '20px';
     div1.style.left = '300px';
-    div1.style.transform = 'translate(-50%, -50%)';
+    div1.style.transform = 'translate(-20%, -20%)';
     section7.appendChild(div1);
     size -= 25;
 }
@@ -191,30 +191,30 @@ for (let i = 0; i < 41; i++) {
 // Task # 9 ---------------------------------------------------------------------------------------------------------
 console.log('\nTask #9');
 
-const section9 = document.querySelector('section.task9-sect');
+// const section9 = document.querySelector('section.task9-sect');
 
-for (let i = 0; i < 41; i++) {
+// for (let i = 0; i < 41; i++) {
 
-    const columnDiv = document.querySelector('div');
-    columnDiv.classList.add('.task9-div');
-    section9.appendChild(columnDiv);
+//     const columnDiv = document.querySelector('div');
+//     columnDiv.classList.add('.task9-div');
+//     section9.appendChild(columnDiv);
 
-    for (let i2 = 0; i2 < 41; i2++) {
-        const spanCell = document.querySelector('span');
-        spanCell.classList.add('#task9-span');
-        spanCell.innerHTML = '&#9632;';
+//     for (let i2 = 0; i2 < 41; i2++) {
+//         const spanCell = document.querySelector('span');
+//         spanCell.classList.add('#task9-span');
+//         spanCell.innerHTML = '&#9632;';
 
-        if (i === i2) {
-            spanCell.style.color = 'yellow';
-        }
+//         if (i === i2) {
+//             spanCell.style.color = 'yellow';
+//         }
 
-        if (i + i2 == 40) {
-            spanCell.style.color = 'yellow';
-        }
+//         if (i + i2 == 40) {
+//             spanCell.style.color = 'yellow';
+//         }
 
-        columnDiv.appendChild(spanCell);
-    }
-}
+//         columnDiv.appendChild(spanCell);
+//     }
+// }
 
 
 

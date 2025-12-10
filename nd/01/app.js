@@ -60,7 +60,7 @@ circleDiv.style.color = 'white';
 
 
 const sectionGo3 = document.querySelector('#go3');
-const spanielis = sectionGo3.querySelectorAll('span');
+const spanTag3 = sectionGo3.querySelectorAll('span');
 
 const random1 = rand(0, 4);
 const random2 = rand(0, 4);
@@ -76,17 +76,23 @@ if (random1 > random2) {
     maziukas = random1;
 }
 
-let rezultatas = didelis / maziukas;
+let rezultatas;
 
-if (maziukas === 0) {
-    spanielis[2].innerText = 'nepadalinsi is 0';
-} else {
-    rezultatas = didelis / maziukas;
+rezultatas = didelis / maziukas;
+
+// if (maziukas == 0) {
+//     spanTag3[2].innerText = 'nepadalinsi is 0';
+// } else {
+//     rezultatas = didelis / maziukas;
+// }
+
+spanTag3[0].innerText = didelis;
+spanTag3[1].innerText = maziukas;
+spanTag3[2].innerText = Number(rezultatas.toFixed(2));
+
+if (maziukas == 0) {
+    spanTag3[2].innerText = 'nepadalinsi is 0';
 }
-
-spanielis[0].innerText = didelis;
-spanielis[1].innerText = maziukas;
-spanielis[2].innerText = rezultatas;
 
 
 //Task #4 ---------------------------------------------------------------------------------------------

@@ -233,9 +233,12 @@ buttonTask10.addEventListener('click', function () {
 
     const result = funkcija2(number1, number2, operatorius);
 
-    output1.innerText = result;
+    output1.innerText = Number(result.toFixed(2));
 
+    console.log(typeof Number(result.toFixed(2)));
 });
+
+
 
 
 
