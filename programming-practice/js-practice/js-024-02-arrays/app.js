@@ -270,7 +270,67 @@ animals.sort((a, b) => {
 });
 
 
+console.log('\n\n Ciklas - SWITCH');
 
+
+const pack = 'L'  // S, M, L, XL
+
+
+// if formuluotė (be SWITCH) ====> Paštomato tikrinimo pavyzdys
+console.log('\n\n if formuluotė');
+
+if (pack == 'S') {
+    console.log('S');
+}
+if (pack == 'S' || pack == 'M') {
+    console.log('M');
+}
+if (pack == 'S' || pack == 'M' || pack == 'L') {
+    console.log('L');
+}
+console.log('XL');
+
+
+
+// SWITCH formuluotė:
+console.log('\n SWITCH formuluotė');
+
+switch(pack) {
+    case 'S': console.log('S');
+    case 'M': console.log('M');
+    case 'L': console.log('L');
+    default: console.log('XL');
+}
+
+
+if (pack == 'S') {
+    console.log('Mažas');
+} else if (pack == 'M') {
+    console.log('Vidutinis');
+} else if (pack == 'L') {
+    console.log ('Didelis');
+} else if (pack == 'XL') {
+    console.log('Labai didelis');
+};
+
+
+
+// SWITCH modified:
+console.log('\n SWITCH modified');
+
+switch(pack) {
+    case 'S': 
+        console.log('Mažas');
+        break;
+    case 'M': 
+        console.log('Vidutinis');
+        break;
+    case 'L': 
+        console.log('Didelis');
+        break;
+    case 'XL': // vietoj default 
+        console.log('Labai didelis');
+};
 
 
 
