@@ -78,3 +78,31 @@ div.color-sq {
     border: 4px solid white;
     border-radius: 10px;
 }
+
+
+div.list-row {
+    display:flex;
+    gap: 30px;
+    justify-items: flex-start;
+    align-content: center;
+}
+
+button.delete-button {
+    border: none;
+    background-color: transparent;
+    color: brown;
+    font-size: 26px;
+    box-shadow: none;
+    font-weight: bold;
+    width: 20px;
+    height: 26px;
+    padding: 0;
+    align-self: center;
+}
+
+
+button.delete-button:hover {
+    box-shadow: none;
+    background-color: transparent;-color: rgb(255, 150, 150);
+    transform: unset;
+}
