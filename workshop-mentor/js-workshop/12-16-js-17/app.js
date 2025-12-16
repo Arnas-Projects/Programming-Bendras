@@ -1,6 +1,41 @@
 
 
 
+const buttonBMI = document.querySelector('button');
+
+function calculateBMI() {
+    const heightTag = Number(document.querySelector('input.height').value);
+    const weightTag = Number(document.querySelector('input.weight').value);
+
+    const BMIresult = Number((weightTag / ((heightTag/100)**2)).toFixed(2));
+
+    const outputTag = document.querySelector('.bmi');
+    outputTag.value = BMIresult;
+
+
+    const weightCondition = document.querySelector('span');
+
+    if (BMIresult < 18.5) {
+        weightCondition.innerText = 'Underweight';
+    } else if (BMIresult <= 24.9) {
+        weightCondition.innerText = 'Healthy';
+    } else if (BMIresult <= 29.9) {
+        weightCondition.innerText = 'Overweight';
+    } else {
+        weightCondition.innerText = 'Obesity';
+    }
+}
+
+buttonBMI.addEventListener('click', calculateBMI);
+
+
+
+
+
+
+
+
+
 
 
 // Task 1 ------------------------------------------------------------------------------------------------------
