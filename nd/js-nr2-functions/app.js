@@ -180,33 +180,45 @@ console.log('\nTask #9');
 const mygtukasTask9 = document.querySelector('button.task9-btn');
 const h2Task9 = document.querySelector('h2.task9-h2');
 
-h2Task9.style.color;
 
-const theySeeMeRollin = function () {
+
+mygtukasTask9.addEventListener('click', _ => {
     h2Task9.innerText = rand(1, 6);
     let h2Random = h2Task9.innerText;
 
     if (h2Random == 6) {
         h2Task9.style.color = 'crimson';
-        mygtukasTask9.removeEventListener('click', theySeeMeRollin);
-    }
-};
+        mygtukasTask9.addEventListener('click', _ => {
+            h2Task9.innerText = 6;
+        });
+    };
+});
 
-mygtukasTask9.addEventListener('click', theySeeMeRollin);
+// const keiciamSkaiciusTage = function () {
+//     h2Task9.innerText = rand(1, 6);
+//     let h2Random = h2Task9.innerText;
+
+//     if (h2Random == 6) {
+//         h2Task9.style.color = 'crimson';
+//         mygtukasTask9.removeEventListener('click', keiciamSkaiciusTage);
+//     }
+// };
+
+// mygtukasTask9.addEventListener('click', keiciamSkaiciusTage);
 
 
 //TASK #10 -------------------------------------------------------------------------------------------------------------
 console.log('\nTask #10');
 
-const input1 = document.querySelector('div#task10-div > input.digit1');
-const input2 = document.querySelector('div#task10-div > input.digit2');
 
-const operator = document.querySelector('div#task10-div > select');
 // const selectAdd = document.querySelector('#numbers-task10 > option');
 // const selectMinus = document.querySelector('#numbers-task10 > option + option');
 // const selectMultiply = document.querySelector('#numbers-task10 > option + option + option');
 // const selectDivide = document.querySelector('#numbers-task10 > option + option + option + option');
 
+const input1 = document.querySelector('div#task10-div > input.digit1');
+const input2 = document.querySelector('div#task10-div > input.digit2');
+const operator = document.querySelector('div#task10-div > select');
 const output1 = document.querySelector('div#task10-div > output');
 const buttonTask10 = document.querySelector('#task10-div > button.task10-btn');
 
@@ -225,7 +237,7 @@ const funkcija2 = function (num1, num2, symbolStr) {
     }
 }
 
-buttonTask10.addEventListener('click', function () {
+buttonTask10.addEventListener('click', _ => {
 
     const number1 = parseFloat(input1.value);
     const number2 = parseFloat(input2.value);
@@ -233,10 +245,16 @@ buttonTask10.addEventListener('click', function () {
 
     const result = funkcija2(number1, number2, operatorius);
 
-    output1.innerText = Number(result.toFixed(2));
 
-    console.log(typeof Number(result.toFixed(2)));
+    output1.innerText = result;
 });
+
+let num1 = 10;
+let num2 = 5;
+
+let result = num1 + num2;
+
+console.log(result);
 
 
 
