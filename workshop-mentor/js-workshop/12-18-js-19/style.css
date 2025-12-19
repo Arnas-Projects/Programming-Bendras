@@ -31,7 +31,7 @@ h1 {
     font-size: 40px;
 }
 
-p {
+span {
     font-size: 20px;
 }
 
@@ -49,6 +49,12 @@ button.roll:hover {
     background-color: gray;
 }
 
-div.image {
+div.dices {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+div.image1, div.image2 {
     font-size: 70px;
 }

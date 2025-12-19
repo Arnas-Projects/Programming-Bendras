@@ -176,6 +176,83 @@ function validate(uuid) {
 
 /***/ },
 
+/***/ "./src/Ls.js"
+/*!*******************!*\
+  !*** ./src/Ls.js ***!
+  \*******************/
+(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/v4.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+var Ls = /*#__PURE__*/_createClass(function Ls(key) {
+  var _this = this;
+  _classCallCheck(this, Ls);
+  _defineProperty(this, "readLocalStorage", function (_) {
+    var data = localStorage.getItem(_this.key);
+    if (null === data) {
+      _this.list = [];
+    } else {
+      _this.list = JSON.parse(data);
+    }
+  });
+  _defineProperty(this, "writeLocalStorage", function (_) {
+    var data = JSON.stringify(_this.list);
+    localStorage.setItem(_this.key, data);
+  });
+  /*
+      Store funkcija vyko naujo "daikto" įrašymą į saugyklą
+      Turi gauti tą "daiktą"
+      Turi "daiktui" priskirti ID ir įrašyti į saugyklą
+  */
+  _defineProperty(this, "Store", function (data) {
+    // const id = rand(10000000, 99999999);  // netikras unikalus id
+    var id = (0,uuid__WEBPACK_IMPORTED_MODULE_0__["default"])();
+    var dataToStore = _objectSpread(_objectSpread({}, data), {}, {
+      id: id // ===> supaprastintas id: id - kadangi vardas ir reikšmė toks pats
+    });
+    _this.list.unshift(dataToStore); // pakeičia listą
+    _this.writeLocalStorage();
+  });
+  _defineProperty(this, "Destroy", function (id) {
+    _this.list = _this.list.filter(function (item) {
+      return item.id != id;
+    }); // išmetam iš listo kvadratuką su nurodytu id
+    _this.writeLocalStorage();
+  });
+  /*
+      Update() vykdo redaguoto "daikto" saugojimą saugykloje
+      Šis metodas turi gauti "daikto" indentifikatorių (id) ir "daikto" naujas savybes
+      Turi persaugoti "daiktą" su nurodytu (id) ir naujomis savybėmis
+  */
+  _defineProperty(this, "Update", function (id, data) {
+    _this.list = _this.list.map(function (item) {
+      return item.id == id ? _objectSpread(_objectSpread(_objectSpread({}, item), data), {}, {
+        id: id
+      }) : item;
+    });
+    _this.writeLocalStorage();
+  });
+  this.key = key; // prisimenam key
+  this.readLocalStorage(); // paleidžiam metodą
+});
+;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Ls); // išeksportuojam
+
+/***/ },
+
 /***/ "./src/app.js"
 /*!********************!*\
   !*** ./src/app.js ***!
@@ -183,14 +260,10 @@ function validate(uuid) {
 (__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/v4.js");
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+/* harmony import */ var _Ls_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Ls.js */ "./src/Ls.js");
 
+
+// import { v4 as uuidv4 } from 'uuid';
 
 /*
     Kažko naujo pridėjimas
@@ -199,13 +272,17 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     Store - veiksmas
 */
 
-var LIST;
-var KEY = 'myFancyColorsList';
-var testUUID = (0,uuid__WEBPACK_IMPORTED_MODULE_0__["default"])();
-console.log(testUUID);
+// let LIST;
+// const KEY = 'myFancyColorsList';
+
+// const testUUID = uuidv4();
+// console.log(testUUID);
+
+var LS; // klasės Ls objektas (kuris dar bus)
+
 var init = function init(_) {
-  readLocalStorage();
-  render();
+  LS = new _Ls_js__WEBPACK_IMPORTED_MODULE_0__["default"]('myFancyColorsList');
+  _render(LS.list);
   var createInput = document.querySelector('[data-create-color-input]');
   var createButton = document.querySelector('[data-create-color-button]');
   createButton.addEventListener('click', function (_) {
@@ -213,7 +290,8 @@ var init = function init(_) {
     var dataToStore = {
       color: color
     };
-    Store(dataToStore);
+    LS.Store(dataToStore);
+    _render(LS.list);
   });
 };
 
@@ -223,11 +301,11 @@ var init = function init(_) {
 //     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 // }
 
-var render = function render(_) {
+var _render = function render(list) {
   var listBin = document.querySelector('[data-colors-list]');
   var listRowTemplate = document.querySelector('[data-colors-template]');
   listBin.innerHTML = '';
-  LIST.forEach(function (colorItem) {
+  list.forEach(function (colorItem) {
     var rowHtml = listRowTemplate.content.cloneNode(true);
     var colorSq = rowHtml.querySelector('[data-color-sq]');
 
@@ -247,7 +325,8 @@ var render = function render(_) {
       // e.target.dataset.id kreipimasis į atributą "data-id"
 
       var id = e.target.dataset.id;
-      Destroy(id);
+      LS.Destroy(id);
+      _render(LS.list);
     });
 
     //***EDIT */
@@ -262,76 +341,73 @@ var render = function render(_) {
       var dataToUpdate = {
         color: color
       };
-      Update(id, dataToUpdate);
+      LS.Update(id, dataToUpdate);
+      _render(LS.list);
     });
     colorSq.style.backgroundColor = colorItem.color + '70'; // + permatomumo skačius
     colorSq.style.borderColor = colorItem.color;
     listBin.appendChild(rowHtml);
   });
 };
+init();
 
 // CRUD CODE
 
-var readLocalStorage = function readLocalStorage(_) {
-  var data = localStorage.getItem(KEY);
-  if (null === data) {
-    LIST = [];
-  } else {
-    LIST = JSON.parse(data);
-  }
-};
-var writeLocalStorage = function writeLocalStorage(_) {
-  var data = JSON.stringify(LIST);
-  localStorage.setItem(KEY, data);
-};
+// const readLocalStorage = _ => {
+//     let data = localStorage.getItem(KEY);
+//     if (null === data) {
+//         LIST = [];
+//     } else {
+//         LIST = JSON.parse(data);
+//     }
+// }
 
-/*
-    Store funkcija vyko naujo "daikto" įrašymą į saugyklą
-    Turi gauti tą "daiktą"
-    Turi "daiktui" priskirti ID ir įrašyti į saugyklą
-*/
+// const writeLocalStorage = _ => {
+//     let data = JSON.stringify(LIST);
+//     localStorage.setItem(KEY, data);
+// }
 
-var Store = function Store(data) {
-  // const id = rand(10000000, 99999999);  // netikras unikalus id
-  var id = (0,uuid__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  var dataToStore = _objectSpread(_objectSpread({}, data), {}, {
-    id: id // ===> supaprastintas id: id - kadangi vardas ir reikšmė toks pats
-  });
-  LIST.unshift(dataToStore);
-  writeLocalStorage();
-  render();
-};
-init();
+// /*
+//     Store funkcija vyko naujo "daikto" įrašymą į saugyklą
+//     Turi gauti tą "daiktą"
+//     Turi "daiktui" priskirti ID ir įrašyti į saugyklą
+// */
 
-/*
-    Destroy() įvykdo "daikto" pašalinimą iš saugyklos
-    Šis metodas turi gauti "daikto" indentifikatorių (id)
-    Turi pašalinti daiktą su nurodytu identifikatorium
-*/
+// const Store = data => {
+//     // const id = rand(10000000, 99999999);  // netikras unikalus id
+//     const id = uuidv4();
+//     const dataToStore = {
+//         ...data,
+//         id // ===> supaprastintas id: id - kadangi vardas ir reikšmė toks pats
+//     }
+//     LIST.unshift(dataToStore);
+//     writeLocalStorage();
+//     render();
+// };
 
-var Destroy = function Destroy(id) {
-  LIST = LIST.filter(function (item) {
-    return item.id != id;
-  }); // išmetam iš listo kvadratuką su nurodytu id
-  writeLocalStorage();
-  render();
-};
+// /*
+//     Destroy() įvykdo "daikto" pašalinimą iš saugyklos
+//     Šis metodas turi gauti "daikto" indentifikatorių (id)
+//     Turi pašalinti daiktą su nurodytu identifikatorium
+// */
 
-/*
-    Update() vykdo redaguoto "daikto" saugojimą saugykloje
-    Šis metodas turi gauti "daikto" indentifikatorių (id) ir "daikto" naujas savybes
-    Turi persaugoti "daiktą" su nurodytu (id) ir naujomis savybėmis
-*/
+// const Destroy = id => {
+//     LIST = LIST.filter(item => item.id != id);  // išmetam iš listo kvadratuką su nurodytu id
+//     writeLocalStorage();
+//     render();
+// };
 
-var Update = function Update(id, data) {
-  LIST = LIST.map(function (item) {
-    return item.id == id ? _objectSpread(_objectSpread(_objectSpread({}, item), data), {}, {
-      id: id
-    }) : item;
-  });
-  writeLocalStorage();
-  render();
-};
+// /*
+//     Update() vykdo redaguoto "daikto" saugojimą saugykloje
+//     Šis metodas turi gauti "daikto" indentifikatorių (id) ir "daikto" naujas savybes
+//     Turi persaugoti "daiktą" su nurodytu (id) ir naujomis savybėmis
+// */
+
+// const Update = (id, data) => {
+//     LIST = LIST.map(item => item.id == id ? {...item, ...data ,id} : item);
+//     writeLocalStorage();
+//     render();
+// };
 
 /***/ },
 
