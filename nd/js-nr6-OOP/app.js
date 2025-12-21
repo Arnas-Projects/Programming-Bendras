@@ -19,7 +19,7 @@ class Kibiras1 {
 
 
     prideti1Akmeni() {
-    this.akmenuKiekis++;
+        this.akmenuKiekis++;
     }
 
 
@@ -62,7 +62,7 @@ kibirelis.kiekPririnktaAkmenu();
 // objektą ir pademonstruoti veikimą. Nesvarbu kokios popierinės kupiūros 
 // ir metalinės monetos egzistuoja realiame pasaulyje.
 
-console.log('\n************ Task 2 ************');
+console.log('\n\n************ Task 2 ************');
 
 
 class Pinigine {
@@ -73,8 +73,6 @@ class Pinigine {
 
 
     ideti(kiekis) {
-        
-        // let piniguKiekis = PinigaiPinigineje
 
         if (kiekis <= 2) {
             this.metaliniaiPinigai = this.metaliniaiPinigai + kiekis;
@@ -87,6 +85,7 @@ class Pinigine {
     skaiciuoti() {
 
         const suma = this.popieriniaiPinigai + this.metaliniaiPinigai;
+
         console.log(`Dabar piniginėje yra: ${suma} pinigų`);
     }
 }
@@ -116,25 +115,68 @@ PinigaiPinigineje.skaiciuoti();
 // keleivių skaičius negali.
 
 
-console.log('\n************ Task 3 ************');
+console.log('\n\n************ Task 3 ************');
 
 
-// class Troleibusas {
+class Troleibusas {
 
-//     constructor() {
-//         this.keleiviuSkaicius = 0;
-//     }
-
-//     ilipa(keleiviuSkaicius)
-// }
+    constructor() {
+        this.keleiviuSkaicius = 0;
+    }
 
 
+    ilipa(keleiviuSkaicius) {
+        this.keleiviuSkaicius += keleiviuSkaicius;
+    }
 
 
+    islipa(keleiviuSkaicius) {
+
+        if (keleiviuSkaicius > this.keleiviuSkaicius) {
+            this.keleiviuSkaicius = 0;
+            console.log('Keleivių skaičius negali būti mažiau nei 0');
+        } else {
+            return this.keleiviuSkaicius -= keleiviuSkaicius
+        }
+    }
 
 
+    vaziuoja() {
 
+        const KeleiviaiTroleibuse = this.keleiviuSkaicius;
+        console.log(`Keleivių kiekis: ${KeleiviaiTroleibuse}`);
+    }
+}
 
+const Trulikas1 = new Troleibusas();
+console.log(Trulikas1);
 
+Trulikas1.ilipa(5);
+console.log(Trulikas1);
 
+Trulikas1.islipa(2);
+console.log(Trulikas1);
 
+Trulikas1.islipa(3);
+console.log(Trulikas1);
+
+Trulikas1.islipa(3);
+console.log(Trulikas1);
+
+Trulikas1.ilipa(5);
+console.log(Trulikas1);
+
+Trulikas1.vaziuoja();
+
+Trulikas1.islipa(3);
+console.log(Trulikas1);
+
+Trulikas1.islipa(3);
+console.log(Trulikas1);
+
+Trulikas1.vaziuoja();
+
+Trulikas1.ilipa(21);
+console.log(Trulikas1);
+
+Trulikas1.vaziuoja();
