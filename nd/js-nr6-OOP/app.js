@@ -127,6 +127,7 @@ class Troleibusas {
 
     ilipa(keleiviuSkaicius) {
         this.keleiviuSkaicius += keleiviuSkaicius;
+        console.log(`\nĮlipo keleivių: ${keleiviuSkaicius}`);
     }
 
 
@@ -134,9 +135,10 @@ class Troleibusas {
 
         if (keleiviuSkaicius > this.keleiviuSkaicius) {
             this.keleiviuSkaicius = 0;
-            console.log('Keleivių skaičius negali būti mažiau nei 0');
+            console.log('\nKeleivių skaičius negali būti mažiau nei 0');
         } else {
-            return this.keleiviuSkaicius -= keleiviuSkaicius
+            this.keleiviuSkaicius -= keleiviuSkaicius
+            console.log(`\nIšlipo keleivių: ${keleiviuSkaicius}`);
         }
     }
 
@@ -144,7 +146,7 @@ class Troleibusas {
     vaziuoja() {
 
         const KeleiviaiTroleibuse = this.keleiviuSkaicius;
-        console.log(`Keleivių kiekis: ${KeleiviaiTroleibuse}`);
+        console.log(`\nKeleivių kiekis: ${KeleiviaiTroleibuse}`);
     }
 }
 
@@ -154,20 +156,6 @@ console.log(Trulikas1);
 Trulikas1.ilipa(5);
 console.log(Trulikas1);
 
-Trulikas1.islipa(2);
-console.log(Trulikas1);
-
-Trulikas1.islipa(3);
-console.log(Trulikas1);
-
-Trulikas1.islipa(3);
-console.log(Trulikas1);
-
-Trulikas1.ilipa(5);
-console.log(Trulikas1);
-
-Trulikas1.vaziuoja();
-
 Trulikas1.islipa(3);
 console.log(Trulikas1);
 
@@ -175,8 +163,10 @@ Trulikas1.islipa(3);
 console.log(Trulikas1);
 
 Trulikas1.vaziuoja();
+console.log(Trulikas1);
 
-Trulikas1.ilipa(21);
+Trulikas1.ilipa(4);
 console.log(Trulikas1);
 
 Trulikas1.vaziuoja();
+console.log(Trulikas1);
