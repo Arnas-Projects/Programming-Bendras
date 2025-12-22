@@ -22,13 +22,11 @@ function rand(min, max) {
 // 10 9 8 7 6 5 4 3 2 1 (skaičiai gali būti atspausdinti stulpeliu).
 console.log('Task 1');
 
+let car = `Automobiliui Nr. 55 likęs nuvažiuoti ratų skaičius: `;
 
-
-
-
-
-
-
+for (let i = 10; i > 0; i--) {
+    console.log(`${car} ${i}`);
+};
 
 
 
@@ -41,14 +39,19 @@ console.log('Task 1');
 // pasibaigus pateikite bendrą visų 10 ratų vidutinį greitį.
 console.log('\nTask 2');
 
+let AverageSpeed = 0;
 
+const car2 = `Automobilio Nr. 55 greitis:`
 
+for (let i = 10; i > 0; i--) {
 
+    const speed = rand(120, 220);
+    console.log(`${car2} ${i} rate: ${speed}`);
 
+    AverageSpeed += speed / 10;
+}
 
-
-
-
+console.log(`\nVidutinis greitis:`, Number(AverageSpeed.toFixed(2)));
 
 
 
@@ -62,10 +65,24 @@ console.log('\nTask 2');
 // ciklą nutraukite anksčiau laiko. 
 console.log('\nTask 3');
 
+let ConsumedFuel = 44;
 
+const car3 = `automobilis sunaudojo:`;
 
+for (let i = 10; i > 0; i--) {
 
+    const fuel = rand(3, 6);
+    console.log(`${i} rate ${car3} ${fuel} l. kuro`);
 
+    ConsumedFuel -= fuel;
+
+    if (ConsumedFuel <= 0) {
+        console.log('Kuras baigėsi!');
+        break;
+    }
+}
+
+console.log('Liko kuro:', ConsumedFuel, 'ltr.');
 
 
 
@@ -82,19 +99,36 @@ console.log('\nTask 3');
 // greitį kažkuriame iš posūkių.
 console.log('\nTask 4');
 
+let saugiklis = 100;
 
+let LowestSpeed = Infinity;
 
+for (let i = 10; i > 0; i--) {
 
+    for (let j = 1; j < 6; j++) {
 
+        const turnSpeed = rand(20, 120);
 
+        console.log(`\nRatas: %c${i}%c \nPosūkis: %c${j}%c \nGreitis posūkyje: %c${turnSpeed}%c km/h\n`, 
+            'color: deeppink;', 'color: inherit;',
+            'color: cyan;', 'color: inherit;',
+            'color: greenyellow;', 'color: inherit;'
+        );
 
+        if (LowestSpeed > turnSpeed) {
+            LowestSpeed = turnSpeed;
+        }
+    }
+}
+
+console.log('\nMažiausias greitis:', LowestSpeed);
 
 
 
 
 // -----------------------------------------------------------------------------------------------------------------
 // (BOSO lygis) Dykumoje vyksta lenktynės. Automobilis Nr. 55 
-// juose dalyvauja. Kiekviename kilometre gali atsitikti arba 
+// jose dalyvauja. Kiekviename kilometre gali atsitikti arba 
 // neatsitikti rand(0, 1) tokie trys įvykiai: netikėtai iššokti - neiišokti 
 // ant kelio kengūra, vairuotojas gali nespėti - spėti pasukti 
 // vairą ir vairuotojas gali nespėti - spėti paspausti stabdžius. 
