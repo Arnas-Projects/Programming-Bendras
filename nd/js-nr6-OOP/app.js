@@ -61,7 +61,6 @@ kibirelis.kiekPririnktaAkmenu();
 // konsolę popieriniaiPinigai ir metaliniaiPinigai sumą. Sukurti klasės 
 // objektą ir pademonstruoti veikimą. Nesvarbu kokios popierinės kupiūros 
 // ir metalinės monetos egzistuoja realiame pasaulyje.
-
 console.log('\n\n************ Task 2 ************');
 
 
