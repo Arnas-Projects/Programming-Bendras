@@ -77,8 +77,10 @@ console.log('\n**********************');
 class PiestukuDezute {
 
     // pradinė reikšmė
-    #pencilsInBox = [];  // masyvas į kurį dėsime pieštukus
-    
+
+    #pencilsInBox = [];
+    // masyvas į kurį dėsime pieštukus
+
     addPencil(color) {
         this.#pencilsInBox.push(color);  // pridedam spalvą
     }
