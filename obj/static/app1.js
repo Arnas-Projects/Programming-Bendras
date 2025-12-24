@@ -19,7 +19,9 @@ class Kisene {
     static get viso() {
         let visoYra = 0;
 
-        this.visosKisenes.forEach(k => visoYra += k.yra);
+        this.visosKisenes.forEach(k => {
+            visoYra += k.yra
+        });
         return visoYra;
     }
 
