@@ -1,0 +1,27 @@
+
+
+
+input {
+    outline: none;
+}
+
+section.task4 {
+    display: flex;
+    align-items: center;
+}
+
+.nr1-input, 
+.nr2-input {
+    margin-right: 20px;
+}
+
+button.plus {
+    margin-right: 5px;
+}
+
+.task4-h5 {
+    margin-left: 50px;
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 8px;
+}
