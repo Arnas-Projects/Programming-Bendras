@@ -88,37 +88,119 @@ console.log('\nTask 2');
 
 class Student {
 
+    static count = 0;
+
     constructor(name, birthYear) {
         this.name = name;
         this.birthYear = birthYear;
         this.grades = [];
+        Student.count++;
     }
 
-    addGrade(dalykas, pazymys) {
-        this.grades.dalykas = dalykas;
-        this.grades.pazymys = pazymys;
+    static getStudentCount() {
+        return Student.count;
     }
 
-    addGrade2(grade) {
+    // addGrade(dalykas, pazymys) {
+    //     this.grades.dalykas = dalykas;
+    //     this.grades.pazymys = pazymys;
+    // }
+
+    addGrade(grade) {
         this.grades.push(grade);
     }
 
     addGradeToFront(grade) {
         this.grades.unshift(grade);
     }
+
+    highestGrade() {
+        return this.grades.length ? Math.max(...this.grades) : null;
+    }
+
+    lowestGrade() {
+        return this.grades.length ? Math.min(...this.grades) : null;
+    }
+
+    averageGrades() {
+        if (this.grades.length === 0) {
+            console.log('Pažymių nėra');
+        }
+
+        let sum = 0;
+
+        this.grades.forEach(grade => {
+            sum += grade;
+        });
+
+        return Number((sum / this.grades.length).toFixed(2));
+    }
+
+    addScholarship() {
+        if ( this.grades.length === 0) {
+            console.log('Pažymių nėra');
+        }
+
+        const average = this.averageGrades();
+
+        if (average >= 8) {
+            console.log(`${this.name} is assigned higher scholarship`);
+        } else if (average >= 6) {
+            console.log(`${this.name} is assigned regular scholarship`);
+        } else {
+            console.log(`The average grade is too low, no scholarship for ${this.name} this semester`);
+        }
+
+    }
 }
+
+
+class OnlineStudent extends Student {
+
+    constructor(name, birthYear, platform) {
+        super(name, birthYear); // iškviečiam Student constructor
+        this.platform = platform;
+    }
+
+    averageGradesOnline() {
+        const onlineAverage = super.averageGrades();
+        return Number((onlineAverage * 0.8).toFixed(2));
+    }
+}
+
+
+const S2 = new OnlineStudent('Aldona', 2007, 'Zoom');
+
+console.log(S2);  
+S2.addGrade(7);
+S2.addGrade(9);
+S2.addGrade(10);
+
+console.log(S2.averageGradesOnline());
 
 const S1 = new Student('Paulius', 2005);
 
-console.log(S1.addGrade('Chemija', 8));
+console.log(Student.getStudentCount());
+
+// console.log(S1.addGrade('Chemija', 8));
 
 console.log(S1);
 
-S1.addGrade2(7);
-S1.addGrade2(9);
+S1.addGrade(7);
+S1.addGrade(9);
 
 console.log(S1);
 
+console.log(S1.highestGrade());
+console.log(S1.lowestGrade());
+console.log(S1.averageGrades());
+
+S1.addScholarship();
+S2.addScholarship();
+
+
+// sukurti metodą kuris vidurki * 0,8
+ 
 
 
 
