@@ -1,0 +1,21 @@
+{
+  "name": "034-02-crud-with-oop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx mix watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "laravel-mix": "^6.0.49",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.97.1",
+    "sass-loader": "^12.1.0"
+  }
+}
