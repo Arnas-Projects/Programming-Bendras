@@ -88,6 +88,7 @@ const Store = data => {
     }
     LIST.push(dataToStore);
     writeLocalStorage();
+    render();
 };
 
 
