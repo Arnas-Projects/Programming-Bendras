@@ -1,26 +1,19 @@
 
 
-import { v4 as uuidV4 } from 'uuid';
+import Ls from './Ls.js';
 
 
 console.log('***** CRUD with OOP *****');
 
 
-/*
-    Naujo pridėjimas
+// Petriuko kodas - šitą kodą galima redaguot
 
-    Create - vaizdas
-    Store - veiksmas
-*/
-
-
-let LIST;
-const KEY = 'x_colorStorage-OOP';
+let FutureObject;  // klasės Ls objektas (bus sukurtas)
 
 
 const init = _ => {
-    readLocalStorage();
-    render();
+    FutureObject = new Ls('x_colorStorage-OOP'); // FutureObject.list jau atsiranda kvadratukai su spalvom
+    render(FutureObject.list);
     const createInput = document.querySelector('[data-create-color-input]');
     const createButton = document.querySelector('[data-create-color-button]');
 
@@ -29,17 +22,18 @@ const init = _ => {
         const dataToStore = {
             color
         };
-        Store(dataToStore);
+        FutureObject.Store(dataToStore);
+        render(FutureObject.list); // LS.list jau yra pakeistas klasėje
     });
 };
 
 
-const render = _ => {
+const render = list => {
     const listBin = document.querySelector('[data-colors-list]');
     const listRowTemplate = document.querySelector('[data-list-template]');
     listBin.innerHTML = '';
 
-    LIST.forEach(colorItem => {
+    list.forEach(colorItem => {
         const rowHtml = listRowTemplate.content.cloneNode(true);
         const colorSq = rowHtml.querySelector('[data-color-sq]');
 
@@ -60,7 +54,8 @@ const render = _ => {
             // e.target.dataset.id kreipimasis į atributą "data-id"
 
             const id = e.target.dataset.id;
-            Destroy(id);
+            FutureObject.Destroy(id);
+            render(FutureObject.list);
         });
 
 
@@ -80,7 +75,8 @@ const render = _ => {
                 color
             };
 
-            Update(id, dataToUpdate);
+            FutureObject.Update(id, dataToUpdate);
+            render(FutureObject.list);
         });
 
 
@@ -90,77 +86,6 @@ const render = _ => {
         listBin.appendChild(rowHtml);
     });
 };
-
-
-//* ***** CRUD CODE ***** *//
-
-
-const readLocalStorage = _ => {
-    let data = localStorage.getItem(KEY);
-
-    // ALTERNATYVA su ternary metodu
-    // null === data ? LIST = [] : LIST = JSON.parse(data);
-
-    if (null === data) {
-        LIST = [];
-    } else {
-        LIST = JSON.parse(data);
-        
-    }
-};
-
-
-const writeLocalStorage = _ => {
-    let data = JSON.stringify(LIST);
-    localStorage.setItem(KEY, data);
-};
-
-
-/*
-    Store vyko naujo "daikto" įrašymą į saugyklą
-    Turi gauti tą "daiktą"
-    Turi "daiktui" priskirti ID ir įrašyti į saugyklą
-*/
-
-
-const Store = data => {
-    const id = uuidV4();
-    const dataToStore = {
-        ...data,
-        id
-    }
-    LIST.unshift(dataToStore);
-    writeLocalStorage();
-    render();
-};
-
-
-/*
-    Destroy vykdo "daikto" pašalinimą iš saugyklos
-    Šis metodas turi gauti "daikto" identifikatorių
-    Turi pašalinti "daiktą" su nurodytu identifikatoriumi
-*/
-
-const Destroy = id => {
-    LIST = LIST.filter(item => item.id != id);
-    writeLocalStorage();
-    render();
-};
-
-
-/* 
-    Update vykdo redaguoto "daikto" saugojimą saugykloje
-    Turi gauti "daikto" identifikatorių ir "daikto" naujas savybes
-    Turi iš naujo išsaugoti daiktą su nurodytu identifikatoriumi ir naujom savybėm 
-*/
-
-
-const Update = (id, data) => {
-    LIST = LIST.map(item => item.id == id ? {...item, ...data, id} : item);
-    writeLocalStorage();
-    render();
-};
-
 
 
 init();
