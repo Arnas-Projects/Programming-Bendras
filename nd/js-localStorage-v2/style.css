@@ -1,0 +1,94 @@
+
+
+
+body {
+    background-color: #444;
+    color: white;
+}
+
+div {
+    display: flex;
+    gap: 25px;
+}
+
+
+
+button {
+    width: 100px;
+    height: 50px;
+    border: 3px solid;
+    border-radius: 25px;
+    transition: 0.2s all ease-out;
+    margin-bottom: 50px;
+}
+
+.green {
+    border-color: darkgreen;
+    background-color: #0080005b;
+}
+
+.blue {
+    border-color: royalblue;
+    background-color: #4169e170;
+}
+
+.red {
+    border-color: crimson;
+    background-color: #dc143c70;
+}
+
+.delete {
+    border-color: white;
+    background-color: #ffffffcd;
+    text-transform: uppercase;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+
+.green:hover {
+    background-color: darkgreen;
+}
+
+.blue:hover {
+    background-color: royalblue;
+}
+
+.red:hover {
+    background-color: crimson;
+}
+
+.delete:hover {
+    background-color: white;
+}
+
+
+
+.green:active {
+    background-color: #00640070;
+}
+
+.blue:active {
+    background-color: #4169e170;
+}
+
+.red:active {
+    background-color: #dc143c70;
+}
+
+.delete:active {
+    background-color: #ffffffcd;
+}
+
+
+
+ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    gap: 10px;
+}
+
+

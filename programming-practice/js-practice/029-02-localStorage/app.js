@@ -87,7 +87,7 @@ const nr2 = document.querySelector('#nr2');
 
 nr2.addEventListener('click', _ => {
     daugSkaiciu.push(manoSkaicius);  // pridedu į sąrašą
-     const daugSkaiciuStringas = JSON.stringify(daugSkaiciu);  // paverčiu stringu
+    const daugSkaiciuStringas = JSON.stringify(daugSkaiciu);  // paverčiu stringu
     localStorage.setItem('mano_skaiciai', daugSkaiciuStringas);
     renderList();  // šitas renderina kekvieną kartą paspaudus mygtuką
 });
