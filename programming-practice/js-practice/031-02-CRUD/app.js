@@ -38,8 +38,7 @@ const readLocalStorage = _ => {
     if (null === data) {
         LIST = [];
     } else {
-        LIST = JSON.parse(data);
-        
+        LIST = JSON.parse(data); 
     }
 };
 
@@ -119,7 +118,7 @@ const render = _ => {
 
 const Store = data => {
     const id = rand(10000000, 99999999); // netikras unikalus id
-    dataToStore = {
+    const dataToStore = {
         id, // ====> supaprastintas id: id
         color: data
     }

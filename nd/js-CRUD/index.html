@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>JS | CRUD | nd</title>
+</head>
+
+<body>
+
+    <h1>CRUD: Ganykla</h1>
+
+    <fieldset class="create">
+        <legend>Create</legend>
+
+        <select data-create-animal-select>
+            <option value="" disabled selected hidden>Pasirink gyvūną</option>
+            <option value="avis">Avis</option>
+            <option value="antis">Antis</option>
+            <option value="antilope">Antilopė</option>
+        </select>
+
+        <input type="text" placeholder="Įrašyk svorį" data-create-animal-input>
+        <button data-create-animal-button>Create</button>
+    </fieldset>
+
+    <section class="list" data-animals-list>
+
+    </section>
+
+
+    <template data-list-template>
+        <div class="list-row" data-list-row>
+            <div class="animal-name" data-animal-name></div>
+
+            <!-- <input type="text" data-edit-animal-input>
+            <button data-edit-animal-button>Edit</button>
+
+            <button class="delete-button" data-delete-sq>X</button> -->
+        </div>
+    </template>
+
+
+
+</body>
+
+</html>
