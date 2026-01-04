@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="app.js" defer></script>
     <link rel="stylesheet" href="style.css">
-    <title>JS | CRUD | nd</title>
+    <title>JS | CRUD | nd | Original</title>
 </head>
 
 <body>
@@ -27,20 +27,28 @@
         <button data-create-animal-button>Create</button>
     </fieldset>
 
-    <section class="list" data-animals-list>
+    <section>
+        <ol class="list" data-animals-list>
 
+        </ol>
     </section>
 
 
     <template data-list-template>
-        <div class="list-row" data-list-row>
-            <div class="animal-name" data-animal-name></div>
 
-            <!-- <input type="text" data-edit-animal-input>
-            <button data-edit-animal-button>Edit</button>
+        <li>
+            <div class="list-row" data-list-row>
 
-            <button class="delete-button" data-delete-sq>X</button> -->
-        </div>
+                <span class="animal-name" data-animal-name></span>
+
+
+                <input class="change-weight" type="text" placeholder="Keisk svorį" data-edit-animal-input>
+                <button data-edit-animal-button>Edit</button>
+
+                <button class="delete-button" data-delete-animal>X</button>
+            </div>
+        </li>
+
     </template>
 
 

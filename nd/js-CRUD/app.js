@@ -10,20 +10,29 @@
 */
 
 
-const animalSelected = gyvunas => {
+// const animalSelected = gyvunas => {
 
-    if (gyvunas == 'avis') {
-        return 'Avis';
-    } else if (gyvunas == 'antis') {
-        return 'Antis';
-    } else if (gyvunas == 'antilope') {
-        return 'Antilopė';
-    }
-};
+//     if (gyvunas == 'avis') {
+//         return 'Avis';
+//     } else if (gyvunas == 'antis') {
+//         return 'Antis';
+//     } else if (gyvunas == 'antilope') {
+//         return 'Antilopė';
+//     }
+// };
+
+const animalSelected = gyvunas => ({
+
+    avis: 'Avis',
+    antis: 'Antis',
+    antilope: 'Antilopė'
+
+} [gyvunas]);
 
 
 let animalsArray;
 const RAKTAS = '_Ganykla';
+
 
 const init = _ => {
     readLocalStorage();
@@ -33,8 +42,11 @@ const init = _ => {
     const createButton = document.querySelector('[data-create-animal-button]');
 
     createButton.addEventListener('click', _ => {
+        const animalName = createSelect.value;
         const animalWeight = createInput.value;
-        Store(animalWeight);
+        Store(animalName, animalWeight);
+        createInput.value = '';
+        createSelect.value = '';
     });
 }
 
@@ -73,23 +85,72 @@ const render = _ => {
         const animalName = rowHtml.querySelector('[data-animal-name]');
 
 
-        animalName.innerText = animalSelected();
+        /* *** DELETE *** */
+
+        const deleteButton = rowHtml.querySelector('[data-delete-animal]');
+
+        deleteButton.dataset.id = gyvunasItem.id;
+
+        deleteButton.addEventListener('click', e => {
+
+            const id = parseInt(e.target.dataset.id);
+            Destroy(id);
+        });
+
+
+        /* *** EDIT *** */
+
+        const editInput = rowHtml.querySelector('[data-edit-animal-input]');
+        const editButton = rowHtml.querySelector('[data-edit-animal-button]');
+
+
+        editInput.value = gyvunasItem.weight;
+        editButton.dataset.id = gyvunasItem.id;
+
+        editButton.addEventListener('click', e => {
+            const id = parseInt(e.target.dataset.id);
+            const weight = editInput.value;
+
+            Update(id, weight);
+        });
+
+
+
+        animalName.innerText = `Gyvūnas: ${animalSelected(gyvunasItem.name)}, Svoris: ${(gyvunasItem.weight)} kg.`;
 
         animalsList.appendChild(rowHtml);
     });
 };
 
 
-const Store = data => {
+const Store = (type, weight) => {
     const id = rand(10000000, 99999999);
     const dataToStore = {
         id,
-        weight: data
+        name: type,
+        weight: weight
     }
     animalsArray.unshift(dataToStore);
     writeLocalStorage();
     render();
 };
+
+
+const Destroy = id => {
+    animalsArray = animalsArray.filter(animal => animal.id != id);
+    writeLocalStorage();
+    render();
+};
+
+
+const Update = (id, data) => {
+    animalsArray = animalsArray.map(item => item.id == id ?
+        { ...item, weight: data } : item);
+    writeLocalStorage();
+    render();
+};
+
+
 
 init();
 
