@@ -125,6 +125,7 @@ class Student {
     averageGrades() {
         if (this.grades.length === 0) {
             console.log('Pažymių nėra');
+            return null;
         }
 
         let sum = 0;
@@ -150,7 +151,15 @@ class Student {
         } else {
             console.log(`The average grade is too low, no scholarship for ${this.name} this semester`);
         }
+    }
 
+    getAge() {
+        const year = new Date().getFullYear();
+        return (year - this.birthYear);
+    }
+
+    introduce() {
+        console.log(`Studento vardas: ${this.name}, Studento amžius: ${this.getAge()}`);
     }
 }
 
@@ -198,9 +207,32 @@ console.log(S1.averageGrades());
 S1.addScholarship();
 S2.addScholarship();
 
-
+console.log(S2.getAge());
 // sukurti metodą kuris vidurki * 0,8
  
+S2.introduce();
+
+console.log('\n');
+console.log('\n');
+
+const mathStudents = [
+    new Student('Jonas', 2008),
+    new Student('Antanas', 2007),
+    new OnlineStudent('Emilija', 2007, 'Teams')
+];
+
+mathStudents.forEach(studentas => {
+    studentas.addGrade(8);
+    studentas.addGrade(7);
+    studentas.addGrade(10);
+    studentas.introduce();
+    studentas.addScholarship();
+    console.log('\n');
+});
+
+console.log(S1 instanceof Student);
+console.log(S2 instanceof OnlineStudent);
+
 
 
 
