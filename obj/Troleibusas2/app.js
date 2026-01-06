@@ -17,12 +17,22 @@ class Troleibusas {
         Troleibusas.#visiKeleiviai += keleiviuSkaicius;
     }
 
+    // // NETEISINGAS VARIANTAS
+    // islipa(keleiviuSkaicius) {
+
+    //     const liko = Math.max(0, this.#keleiviuSkaicius - keleiviuSkaicius);
+    //     this.#keleiviuSkaicius = liko;
+
+    //     const islipo = this.#keleiviuSkaicius < keleiviuSkaicius ? this.#keleiviuSkaicius : keleiviuSkaicius;
+    //     Troleibusas.#visiKeleiviai -= islipo;
+    // }
+
+    // ČIA YRA TEISINGAS VARIANTAS
     islipa(keleiviuSkaicius) {
 
-        const liko = Math.max(0, this.#keleiviuSkaicius - keleiviuSkaicius);
-        this.#keleiviuSkaicius = liko;
+        const islipo = Math.min(this.#keleiviuSkaicius, keleiviuSkaicius);
 
-        const islipo = this.#keleiviuSkaicius < keleiviuSkaicius ? this.#keleiviuSkaicius : keleiviuSkaicius;
+        this.#keleiviuSkaicius -= islipo;
         Troleibusas.#visiKeleiviai -= islipo;
     }
 
