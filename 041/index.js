@@ -102,7 +102,7 @@ app.get('/didesnis-skaicius/:num1/:num2', (req, res) => {
 
   const number1 = Number(req.params.num1);
   const number2 = Number(req.params.num2);
-  
+
   let didesnis;
 
   if (number1 > number2) {
@@ -132,6 +132,96 @@ app.get('/didesnis/:skaicius1/:skaicius2', (req, res) => {
 
   res.send(`Didesnis skaičius yra ${didesnis}`); // siunčiame atsakymą su didesniu skaičiumi
 });
+
+// ----------------------------------------------------------------------------------------------------------------------------
+
+/*
+  // fikcinis URL su parametrais
+  https://duckduckgo.com/karv%C4%97/chromentp/web
+  
+  Query (užklausos) parametrai URL'e
+  pvz:
+  https://duckduckgo.com/?q=karv%C4%97&t=chromentp&ia=web
+  
+  parametrai yra URL dalis po klaustuko ?
+  parametras susideda iš kintamojo vardo ir reikšmės
+  vardas rašomas prieš lygybės ženklą =
+  reikšmė rašoma po lygybės ženklo =
+  jei yra keli parametrai, jie atskiriami & ženklu
+ 
+*/
+
+
+
+// duomenų perdavimas su query (užklausos) parametrais
+
+app.get('/spalvotas-dydis', (req, res) => {
+    // paimame query parametrus iš req objekto
+    const spalva = req.query.color;
+    const dydis = req.query.size;
+    const maziau = req.query.small;
+    res.send(`Spalva yra ${spalva}, dydis yra ${dydis}, mažiau yra ${maziau}`);
+});
+
+
+// Padaryti kalkuliatorių skaičiuotuvą sumai per URL skaičiuoti
+// url su query  => turi parašyti "5 + 10 = 15"
+app.get('/sudedam', (req, res) => {
+
+  const pirmas = Number(req.query.first);
+  const antras = Number(req.query.second);
+  const suma = pirmas + antras;
+
+  res.send(`Sumuojam: ${pirmas} + ${antras} = ${suma}`);
+});
+
+// DĖSTYTOJO SPRENDIMAS
+app.get('/query-suma', (req, res) => {
+    const skaicius1 = parseFloat(req.query.skaicius1);
+    const skaicius2 = parseFloat(req.query.skaicius2);
+    const suma = skaicius1 + skaicius2;
+    res.send(`${skaicius1} + ${skaicius2} = ${suma}`);
+});
+
+// localhost/query-suma?skaicius1=5&skaicius2=10
+
+
+
+// ALTERNATYVA
+app.get('/query-suma2', (req, res) => {
+    // paimame query parametrus iš req objekto
+    const sk1 = req.query.sk1; // pvz: /query?color=red
+    const sk2 = req.query.sk2;   // pvz: /query?size=10
+    const sk3 = +sk1 + +sk2;
+    res.send(`${sk1} + ${sk2} = ${sk3}`);
+});
+
+
+// -----------------------------------------------------------------
+
+app.get('/suma/:pirmas', (req, res) => {
+
+  const parametras = Number(req.params.pirmas);
+  const queris = Number(req.query.antras);
+  const suma = parametras + queris;
+
+  res.send(`Sumuojam: ${parametras} + ${queris} = ${suma}`);
+})
+
+
+// DĖSTYTOJO SPRENDIMAS
+app.get('/mix-suma/:skaicius1', (req, res) => {
+    const skaicius1 = parseFloat(req.params.skaicius1);
+    const skaicius2 = parseFloat(req.query.skaicius2);
+    const suma = skaicius1 + skaicius2;
+    res.send(`${skaicius1} + ${skaicius2} = ${suma}`);
+});
+ 
+// http://localhost/mix-suma/5?skaicius2=10
+ 
+
+
+// -------------------------------------------------------------------
 
 
 
