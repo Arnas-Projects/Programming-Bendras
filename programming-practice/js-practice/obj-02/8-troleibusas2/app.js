@@ -72,6 +72,8 @@ T2.vaziuoja();
 T2.ilipa(1);
 T2.vaziuoja();
 
+T2.islipa(5);
+
 
 
 console.log('\n');
