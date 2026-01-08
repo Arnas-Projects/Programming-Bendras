@@ -1,7 +1,17 @@
 const express = require('express');
 const fs = require('fs'); // failų sistemos modulis-biblioteka
+const bodyParser = require('body-parser');
 const app = express();
 const port = 80;
+
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json()); // for parsing application/json
+
+
+// Failai folderyje 'public' bus pasiekiami per naršyklę
+app.use(express.static('public')); // Nurodome, kad statiniai failai bus iš 'public' katalogo
 
 
 // Dalis Router
@@ -156,11 +166,11 @@ app.get('/didesnis/:skaicius1/:skaicius2', (req, res) => {
 // duomenų perdavimas su query (užklausos) parametrais
 
 app.get('/spalvotas-dydis', (req, res) => {
-    // paimame query parametrus iš req objekto
-    const spalva = req.query.color;
-    const dydis = req.query.size;
-    const maziau = req.query.small;
-    res.send(`Spalva yra ${spalva}, dydis yra ${dydis}, mažiau yra ${maziau}`);
+  // paimame query parametrus iš req objekto
+  const spalva = req.query.color;
+  const dydis = req.query.size;
+  const maziau = req.query.small;
+  res.send(`Spalva yra ${spalva}, dydis yra ${dydis}, mažiau yra ${maziau}`);
 });
 
 
@@ -177,10 +187,10 @@ app.get('/sudedam', (req, res) => {
 
 // DĖSTYTOJO SPRENDIMAS
 app.get('/query-suma', (req, res) => {
-    const skaicius1 = parseFloat(req.query.skaicius1);
-    const skaicius2 = parseFloat(req.query.skaicius2);
-    const suma = skaicius1 + skaicius2;
-    res.send(`${skaicius1} + ${skaicius2} = ${suma}`);
+  const skaicius1 = parseFloat(req.query.skaicius1);
+  const skaicius2 = parseFloat(req.query.skaicius2);
+  const suma = skaicius1 + skaicius2;
+  res.send(`${skaicius1} + ${skaicius2} = ${suma}`);
 });
 
 // localhost/query-suma?skaicius1=5&skaicius2=10
@@ -189,11 +199,11 @@ app.get('/query-suma', (req, res) => {
 
 // ALTERNATYVA
 app.get('/query-suma2', (req, res) => {
-    // paimame query parametrus iš req objekto
-    const sk1 = req.query.sk1; // pvz: /query?color=red
-    const sk2 = req.query.sk2;   // pvz: /query?size=10
-    const sk3 = +sk1 + +sk2;
-    res.send(`${sk1} + ${sk2} = ${sk3}`);
+  // paimame query parametrus iš req objekto
+  const sk1 = req.query.sk1; // pvz: /query?color=red
+  const sk2 = req.query.sk2;   // pvz: /query?size=10
+  const sk3 = +sk1 + +sk2;
+  res.send(`${sk1} + ${sk2} = ${sk3}`);
 });
 
 
@@ -211,17 +221,45 @@ app.get('/suma/:pirmas', (req, res) => {
 
 // DĖSTYTOJO SPRENDIMAS
 app.get('/mix-suma/:skaicius1', (req, res) => {
-    const skaicius1 = parseFloat(req.params.skaicius1);
-    const skaicius2 = parseFloat(req.query.skaicius2);
-    const suma = skaicius1 + skaicius2;
-    res.send(`${skaicius1} + ${skaicius2} = ${suma}`);
+  const skaicius1 = parseFloat(req.params.skaicius1);
+  const skaicius2 = parseFloat(req.query.skaicius2);
+  const suma = skaicius1 + skaicius2;
+  res.send(`${skaicius1} + ${skaicius2} = ${suma}`);
 });
- 
+
 // http://localhost/mix-suma/5?skaicius2=10
- 
 
 
-// -------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
+
+
+app.get('/search', (req, res) => {
+  const query = req.query.q;
+  const another = req.query.another;
+  res.send(`You searched for: ${query}. Another input: ${another}`);
+});
+
+
+
+
+// Padaryti kalkuliatorių skaičiuotuvą sumai su forma GET metodu skaičiuoti
+// Formoje suvedame du skaičius
+// atsidaro langas kuriame turi parašyti "5 + 10 = 15"
+
+
+app.post('/login', (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  // res.send(`Username: ${username}, Password: ${password}`);
+  res.redirect('/ok');
+});
+
+
+app.get('/ok', (req, res) => {
+  res.send('Login successful!');
+});
+
+
 
 
 

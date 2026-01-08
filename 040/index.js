@@ -1,10 +1,15 @@
 const express = require('express');
 const fs = require('fs'); // failų sistemos modulis
+const bodyParser = require('body-parser');
 const app = express();
 const port = 80;
 
 // importuojam service duomenis
 const { services } = require('./services');
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: true })); // body duomenų parseris
+
 
 // Failai folderyje 'public' bus pasiekiami per naršyklę
 app.use(express.static('public')); // Nurodome, kad statiniai failai bus iš 'public' folderio
@@ -106,8 +111,14 @@ app.get('/contact', (req, res) => {
 
   const top = fs.readFileSync('./html/top.html', 'utf8');
   const bottom = fs.readFileSync('./html/bottom.html', 'utf8');
-  const contact = fs.readFileSync('./html/contact.html', 'utf8');
+  let contact = fs.readFileSync('./html/contact.html', 'utf8');
 
+  const m = req.query.m;
+  if (m === 'ok') { // rodome sėkmės žinutę
+    contact = contact.replace('{{successMessageDisplay}}', '');
+  } else { // nerodome sėkmės žinutės
+    contact = contact.replace('{{successMessageDisplay}}', 'style="display:none;"');
+  }
 
   const pageTitle = 'Contact Us';
   const topWithTitle = top.replace('{{title}}', pageTitle);
@@ -115,6 +126,22 @@ app.get('/contact', (req, res) => {
   res.send(topWithTitle + contact + bottom); // naršyklei atiduodamas jau vienas HTML failas
 
 });
+
+
+app.post('/form-submit', (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const message = req.body.message;
+
+  let data = fs.readFileSync('data.json', 'utf8'); // nuskaitome esamus duomenis
+  let json = JSON.parse(data); // paverčiame į JSON objektą
+  json.push({ name, email, message }); // pridedame naują žinutę
+  data = JSON.stringify(json, null, 2); // paverčiame atgal į string'ą
+  fs.writeFileSync('data.json', data); // įrašome atgal į failą
+
+  res.redirect('/contact?m=ok');
+});
+
 
 
 
