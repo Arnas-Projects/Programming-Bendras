@@ -1,0 +1,376 @@
+
+
+
+console.log('Objektiniai uždaviniai #2');
+console.log('\n');
+
+
+
+console.log('%c\n\n************ TASK 1 ************%c', 'color: deeppink;', 'color: inherit;');
+/*
+    Sukurti klasę Marsas. Sukurti statinį metodą pridetiPalydovą(), 
+    kuris sukuria naują Marsas objektą, turintį dvi savybes 
+    id: rand 100000 - 999999 ir pavadinimas: pagal taisyklę 
+    iškvietus pirmą kartą “Deimas”, antrą kartą “Fobas”. 
+    
+    Metodas grąžina Marsas objektą. Metodą iškvietus trečią, 
+    ketvirtą ir t.t. kartus, metodas turi nekurti daugiau naujų 
+    Marsas objektų, o grąžinti atsitiktine tvarka, vieną iš dviejų 
+    jau sukurtų Marsas objektų. 
+    
+    Tarkim penkis kartus iškvietus metodą, turime matyti tik du 
+    skirtingus objektus (žiūrim pagal id).
+*/
+
+
+class Marsas {
+
+    static palydovai = [];
+
+    static pavadinimai = ['Deimos', 'Fobos'];
+
+
+    static rand(min, max) {
+        const minCeiled = Math.ceil(min);
+        const maxFloored = Math.floor(max);
+        return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+    }
+
+
+    static pridetiPalydova() {
+
+        if (this.palydovai.length < 2) {
+
+            const id = this.rand(100000, 999999);
+            const pavadinimas = this.pavadinimai[this.palydovai.length];
+
+            const naujasObj = new Marsas(id, pavadinimas);
+            this.palydovai.push(naujasObj);
+
+            return naujasObj;
+        }
+
+        const randIndex = this.rand(0, 1);
+        return this.palydovai[randIndex];
+    }
+
+    constructor(id, name) {
+        this.id = id;
+        this.pavadinimas = name;
+    }
+};
+
+
+console.log(Marsas.pridetiPalydova());
+console.log(Marsas.pridetiPalydova());
+console.log(Marsas.pridetiPalydova());
+console.log(Marsas.pridetiPalydova());
+console.log(Marsas.pridetiPalydova());
+console.log(Marsas.pridetiPalydova());
+console.log(Marsas.pridetiPalydova());
+
+
+
+console.log('%c\n\n************ TASK 2 ************%c', 'color: deeppink;', 'color: inherit;');
+/*
+    Sukurti klasę Puodelis. Puodelis turi dvi savybes: spalva ir ipilta. 
+
+    Sukurti statinį metodą gamintiPuodelius(), kuris pagamina du objektus 
+    su savybių reikšmėm: “raudonas”, “pilnas” ir “geltonas”, “tuščias”. 
+    
+    Sukurti statinį metodą perpilti(), kuris “pilną” puodelį padaro 
+    tuščią ir atvirkščiai. 
+    
+    Jeigu abu puodeliai tušti arba pilni - nieko nepadaro. 
+    
+    Sukurti statinį metodus ispiltiViska(), kuris abu puodelius 
+    padaro “tuščius” ir ipiltiIAbu(), kuris abu puodelius padaro “pilnus”. 
+    
+    Po šių metodų iškvietimo, metodas perpilti() turi veikti 
+    korektiškai ir logiškai (arba abu “tušti” arba abu “pilni”).
+*/
+
+
+class Puodelis {
+
+    static visiPuodeliai = [];
+
+    constructor(spalva, ipilta) {
+        this.spalva = spalva;
+        this.ipilta = ipilta;
+    }
+
+    static gamintiPuodelius() {
+        const puodelis1 = new Puodelis('raudonas', 'pilnas');
+        const puodelis2 = new Puodelis('geltonas', 'tuščias');
+        this.visiPuodeliai = [puodelis1, puodelis2];
+        return this.visiPuodeliai;
+    }
+
+    static perpilti() {
+
+        if (this.visiPuodeliai.length < 2)
+            return;
+
+        const p1 = this.visiPuodeliai[0];
+        const p2 = this.visiPuodeliai[1];
+
+        if (p1.ipilta != p2.ipilta) {
+
+            if (p1.ipilta === 'pilnas') {
+                p1.ipilta = 'tuščias';
+                p2.ipilta = 'pilnas';
+            } else {
+                p1.ipilta = 'pilnas';
+                p2.ipilta = 'tuščias';
+            }
+        }
+    }
+
+    static ispiltiViska() {
+
+        if (this.visiPuodeliai.length < 2)
+            return;
+
+        const p1 = this.visiPuodeliai[0];
+        const p2 = this.visiPuodeliai[1];
+
+        p1.ipilta = 'tuščias';
+        p2.ipilta = 'tuščias';
+    }
+
+    static ipiltiAbu() {
+
+        if (this.visiPuodeliai.length < 2)
+            return;
+
+        const p1 = this.visiPuodeliai[0];
+        const p2 = this.visiPuodeliai[1];
+
+        p1.ipilta = 'pilnas';
+        p2.ipilta = 'pilnas';
+    }
+};
+
+
+
+console.log(Puodelis.gamintiPuodelius());
+
+Puodelis.perpilti();
+console.log(Puodelis.visiPuodeliai);
+
+Puodelis.ispiltiViska();
+console.log(Puodelis.visiPuodeliai);
+
+Puodelis.ipiltiAbu();
+console.log(Puodelis.visiPuodeliai);
+
+Puodelis.perpilti();
+console.log(Puodelis.visiPuodeliai);
+
+Puodelis.ispiltiViska();
+console.log(Puodelis.visiPuodeliai);
+
+Puodelis.perpilti();
+console.log(Puodelis.visiPuodeliai);
+
+
+
+console.log('%c\n\n************ TASK 3 ************%c', 'color: deeppink;', 'color: inherit;');
+/*
+    Sukurti klasę Taskas, kuris turi savybę taskas rand 100-999. 
+    
+    Sukurti klasę Taskai, kuris turi savybe taskai, kuri yra masyvas 
+    iš 10 Taskas objektų. 
+    
+    Sukurkite išorinį kintamąjį (nepriklausantį jokiai klasei) daugTasku, 
+    kuris yra masyvas iš 10 elementų, o kiekvienas elementas yra Taskai objektas. 
+    
+    Išrūšiuokite masyvą daugTasku, pagal taskų sumą nuo didžiausio iki mažiausio.
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log('%c\n\n************ TASK 4 ************%c', 'color: deeppink;', 'color: inherit;');
+/*
+    Sukurti klasę Div. Sukūrus naują objektą iš šios klasės HTML’e 
+    turi atsirasti naujas <div> tagas su rand 1000 - 9999 skaičiumi viduje. 
+    
+    Sukurti metodą spalva(color), kuris keistų to <div> tago spalvą. 
+    
+    Taip pat statinį metodą visuSpalva(color), kuris keistų visų <div> 
+    tagų, sukurtų per klasę, spalvą.
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log('%c\n\n************ TASK 5 ************%c', 'color: deeppink;', 'color: inherit;');
+/*
+    Sukurti klasę Post. Kuriant objektą iš šios klasės, reikia 
+    įrašyti id savybę, pasirinktinai nuo 1 iki 100. 
+    
+    Objektas turi turėti visas savybes gautas iš serverio 
+    adresu: https://jsonplaceholder.typicode.com/posts/1 
+    (objektas su id: 1).
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log('%c\n\n************ TASK 6 ************%c', 'color: deeppink;', 'color: inherit;');
+/*
+    Sukurti klasę Ratai. Klasė turi dvi savybes: kiekis ir dydis. 
+    
+    Abi savybės įrašomos objelto kūrimo metu. 
+    
+    Sukurti klasę Dviratis ir klasę Automobilis. 
+    
+    Abi šios klasės turi turėti savybę gamintojas, 
+    kuri įrašoma objekto kūrimo metu ir paveldėti klasę Ratai. 
+    
+    Sukurti objektus iš klasių Dviratis ir Automobilis 
+    kūrimo metu nurodant gamintoją ir ratų dydį, o tuo tarpu 
+    ratų skaičius turi būti priskirtas automatiškai priklausomai 
+    nuo to, kiek ratų turi transporto priemonė.
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log('%c\n\n************ TASK 7 ************%c', 'color: deeppink;', 'color: inherit;');
+/*
+    Sukurti klasę Paukstis, kuris turi tris metodus bega(), 
+    plaukia(), skrenda(). 
+    
+    Iškvietus atitinkamą metodą, konsolėje turi būti atspausdintas 
+    atitinkamas pranešimas pvz.: “Šitas paukštis skrenda”, kai 
+    iškviečiamas metodas skrenda(). 
+    
+    Sukurti tris klases Antis, Pingvinas ir Strutis, kurios paveldėja 
+    klasę Paukštis. 
+    
+    Kiekvienoje klasėje perrašyti nekorektiškus metodus pvz.: “Šitas 
+    paukštis NEskrenda”, kai iškviečiamas metodas skrenda() 
+    objekte pagamintame iš klasės Strutis.
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log('%c\n\n************ TASK 8 ************%c', 'color: deeppink;', 'color: inherit;');
+/*
+    Sukurti klasę Senelis, kurią paveldi Klasė Tevas, 
+    kurią atitinkamai paveldi klasė Vaikas. 
+    
+    Senelis turi savybę pavarde (Tevas ir Vaikas tokios 
+    savybės neturi), kurią paveldi visos kitos klasės ir 
+    kuri priskirama objekto kūrimo metu. 
+    
+    Visos klasės turi savybę vardas, kuri yra nepaveldima, 
+    bet perrašoma kiekvienoje klasėje ir kuri įrašoma objekto 
+    kūrimo metu. 
+    
+    Klasė Senelis turi metodą kas(), kurį paveldi visos klasės 
+    ir kuris konsolėje atspausdina objekto vardą ir pavardę. 
+    
+    Sukurkite po vieną objektą iš visų klasių su ta pačia pavarde 
+    ir skirtingais vardais. 
+    
+    Visuose objektuose paleiskite metodą kas() ir įsitikinkite, 
+    kad visi turi teisingą vardus ir pavardę
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -109,7 +109,7 @@ for (let i = 10; i > 0; i--) {
 
         const turnSpeed = rand(20, 120);
 
-        console.log(`\nRatas: %c${i}%c \nPosūkis: %c${j}%c \nGreitis posūkyje: %c${turnSpeed}%c km/h\n`, 
+        console.log(`\nRatas: %c${i}%c \nPosūkis: %c${j}%c \nGreitis posūkyje: %c${turnSpeed}%c km/h\n`,
             'color: deeppink;', 'color: inherit;',
             'color: cyan;', 'color: inherit;',
             'color: greenyellow;', 'color: inherit;'
@@ -140,13 +140,111 @@ console.log('\nMažiausias greitis:', LowestSpeed);
 // atspausdinkite kiek kilometų sugebėjo nuvažiuoti automobilis be avarijos.
 console.log('\nTask 5');
 
+// let times = 0;
+let km = 0;
+let crash = false;
+
+let kenguraJump;
+let wheel;
+let breaks;
+
+do {
+
+    kenguraJump = rand(0, 1) ? 'Kengūra iššoko' : 'Kengūra neiššoko';
+    // console.log('\n');
+    console.log(kenguraJump);
+
+    wheel = rand(0, 1) ? 'Nepasuko vairo' : 'Pasuko vairą';
+    // console.log('\n');
+    console.log(wheel);
+
+    breaks = rand(0, 1) ? 'Nepaspaudė stabdžio' : 'Paspaudė stabdį';
+    console.log(breaks);
+    console.log('\n');
+
+    if (kenguraJump == 'Kengūra iššoko' && wheel == 'Nepasuko vairo' && breaks == 'Nepaspaudė stabdžio') {
+
+        console.log('CRASH!');
+        crash = true;
+    } else {
+        km ++;
+    }
+
+
+} while (!crash);
+
+console.log(`Automobilis nuvažiavo: ${km} km.`);
+console.log('\n\n\n\n\n');
 
 
 
+// ALTERNATYVA
+
+let kilometrai = 0;
+let avarija = false;
+
+let kengura;
+let vairas;
+let stabdis;
+
+let kuras = 100;
+
+do {
+
+    kengura = rand(0, 1);
+
+    let consumedFuel = rand(1, 5);
+    kuras -= consumedFuel;
+
+    if (kuras <= 0) {
+        kuras = 0;
+        console.log('Kuras baigėsi!');
+        break;
+    }
+
+    if (kengura === 1) {
+        console.log('Kengūra iššoko!');
+
+        vairas = rand(0, 1);
+
+        if (vairas === 1) {
+            console.log('Vairo nepasuko');
+
+            stabdis = rand(0, 1);
+
+            if (stabdis === 1) {
+                console.log('Stabdždio nepaspaudė');
+                console.log('\nCRASH!');
+                avarija = true;
+            } else {
+
+                kilometrai ++;
+                console.log('Stabdį paspaudė! Važiuojam toliau...');
+                console.log('Sunaudojo kuro:', consumedFuel);
+                console.log('\n');
+            }
+        } else {
+
+            kilometrai ++;
+            console.log('Vairą pasuko! Važiuojam toliau...');
+            console.log('Sunaudojo kuro:', consumedFuel);
+            console.log('\n');
+        }
+    } else {
+
+        kilometrai ++;
+        console.log('Kengūra neiššoko! Važiuojam toliau...');
+        console.log('Sunaudojo kuro:', consumedFuel);
+        console.log('\n');
+    }
+
+} while (!avarija && kuras > 0);
 
 
+console.log('\n');
 
-
+console.log('Automobilis nuvažiavo:', kilometrai, 'km.');
+console.log('Kuro likutis:', kuras, 'ltr.');
 
 
 
