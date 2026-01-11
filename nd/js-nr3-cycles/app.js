@@ -130,7 +130,7 @@ for (let i = 4; i <= 14; i++) {
 
     const span4 = document.createElement('span');
     divEqual.appendChild(span4);
-    span4.innerText = '='; 
+    span4.innerText = '=';
 
     const span5 = document.createElement('span');
     divRes.appendChild(span5);
@@ -142,6 +142,34 @@ for (let i = 4; i <= 14; i++) {
 
 // Task # 6 ---------------------------------------------------------------------------------------------------------
 console.log('\nTask #6');
+/* 
+    Naršyklėje nupieškite linija iš 444 “*” (tarp žvaigždučių tarpų nėra). 
+    
+    Programiškai “suskaldykite” (naudodami tagus atskirom žvaigždučių grupėm) 
+    žvaigždutes taip, kad vienoje eilutėje nebūtų daugiau nei 44 “*”.
+*/
+
+const sectionTag6 = document.querySelector('.task6-sect');
+
+const maxStars = 444;
+let rowText = '';
+
+for (let i = 1; i <= maxStars; i++) {
+
+    rowText += '*';
+
+    if (i % 44 == 0 || i == maxStars) {
+
+        const spanTag = document.createElement('div');
+        spanTag.innerText = rowText;
+
+        sectionTag6.appendChild(spanTag);
+
+        rowText = '';
+    }
+
+    
+};
 
 
 
@@ -152,7 +180,7 @@ const section7 = document.querySelector('section.task7-sect');
 let size = 400;
 
 for (i = 0; i < 14; i++) {
-    
+
     const div1 = document.createElement('div');
     div1.classList.add('task7-div');
     div1.style.width = size + 'px';
@@ -164,7 +192,7 @@ for (i = 0; i < 14; i++) {
     div1.style.left = '300px';
     div1.style.transform = 'translate(-20%, -20%)';
     section7.appendChild(div1);
-    size -= 25;
+    size -= 29;
 }
 
 
@@ -191,76 +219,34 @@ for (let i = 0; i < 41; i++) {
 // Task # 9 ---------------------------------------------------------------------------------------------------------
 console.log('\nTask #9');
 
-// const section9 = document.querySelector('section.task9-sect');
-
-// for (let i = 0; i < 41; i++) {
-
-//     const columnDiv = document.querySelector('div');
-//     columnDiv.classList.add('.task9-div');
-//     section9.appendChild(columnDiv);
-
-//     for (let i2 = 0; i2 < 41; i2++) {
-//         const spanCell = document.querySelector('span');
-//         spanCell.classList.add('#task9-span');
-//         spanCell.innerHTML = '&#9632;';
-
-//         if (i === i2) {
-//             spanCell.style.color = 'yellow';
-//         }
-
-//         if (i + i2 == 40) {
-//             spanCell.style.color = 'yellow';
-//         }
-
-//         columnDiv.appendChild(spanCell);
-//     }
-// }
+/* 
+    Uždavinyje prieš tai nupieštam kvadratui nupieškite geltonas 
+    istrižaides (geltonai nudažykite atitinkamus simbolius). #ciklasCikle
+*/
 
 
+const sectionTag9 = document.querySelector('.task9-sect');
 
+const number = 41;
 
+for (let i = 0; i < number; i++) {
 
+    const rowText = document.createElement('div');
+    rowText.classList.add('task9-div');
+    rowText.style.color = 'black';
+    sectionTag9.appendChild(rowText);
 
-// for (let i = 0; i < word3.length; i++) {
-//     const divas = document.createElement('div'); // sukuriam kiekvienai raidei divą
-//     divas.innerText = word3[i]; // pridedam į tą divą raidę
-//     h2Cycle.appendChild(divas); // divą su raide įkeliam į h2 tagą
-// }
+    for (let j = 0; j < number; j++) {
+        const spanTag = document.createElement('span');
+        spanTag.innerHTML = '&#9632;';
 
+        if (i === j || j === (number - 1) - i) {
+            spanTag.style.color = 'yellow';
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        rowText.appendChild(spanTag);
+    }
+};
 
 
 
