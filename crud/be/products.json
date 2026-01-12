@@ -1,0 +1,23 @@
+[
+  {
+    "productName": "Duona",
+    "productPrice": "1.5",
+    "productQuantity": "2",
+    "productDescription": "\"Klaipėdos\" duona.",
+    "id": "ac4da9a0-024a-415b-9b3e-2543343f9176"
+  },
+  {
+    "productName": "Kalafijoras",
+    "productPrice": "3",
+    "productQuantity": "1",
+    "productDescription": "Žiedinis kopūstas sriubai.",
+    "id": "d79d4bd6-6a69-4888-8466-d57d3ba9a0a8"
+  },
+  {
+    "productName": "Obuoliai",
+    "productPrice": "3",
+    "productQuantity": "2",
+    "productDescription": "Skanūs, prinokę, raudoni obuoliai.",
+    "id": "7713932c-fbcd-44db-909b-9a564565b740"
+  }
+]
