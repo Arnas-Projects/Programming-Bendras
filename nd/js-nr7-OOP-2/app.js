@@ -1,6 +1,17 @@
 
 
 
+const rand = (min, max) => {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+};
+
+const randColor = _ => {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16).padEnd(6, '0');
+}
+
+
 console.log('Objektiniai uždaviniai #2');
 console.log('\n');
 
@@ -189,19 +200,98 @@ console.log('%c\n\n************ TASK 3 ************%c', 'color: deeppink;', 'col
     Išrūšiuokite masyvą daugTasku, pagal taskų sumą nuo didžiausio iki mažiausio.
 */
 
+// 1 etapas ----------------------------------------------------------------------------------------------
+class Taskas {
+
+    constructor() {
+        this.taskas = rand(100, 999);
+    }
+};
+
+
+// 2 etapas ----------------------------------------------------------------------------------------------
+class Taskai {
+
+    constructor() {
+
+        this.taskai = [];
+
+        for (let i = 0; i < 10; i++) {
+
+            const naujasObj = new Taskas();
+            this.taskai.push(naujasObj);
+        }
+    }
+};
+
+const dots1 = new Taskai();
+
+console.log(dots1);
+console.log('\n');
+
+
+// 3 etapas ----------------------------------------------------------------------------------------------
+const daugTasku = [];
+
+for (let i = 0; i < 10; i++) {
+
+    const naujasTaskaiObj = new Taskai();
+    daugTasku.push(naujasTaskaiObj);
+};
+
+console.log(daugTasku);
+console.log('\n');
+
+
+// 4 etapas ----------------------------------------------------------------------------------------------
+const sortedDaugTasku = daugTasku.toSorted((a, b) => {
+
+    const sumaA = a.taskai.reduce((suma, dabartinis) => suma + dabartinis.taskas, 0);
+    const sumaB = b.taskai.reduce((suma, dabartinis) => suma + dabartinis.taskas, 0);
+
+    return sumaB - sumaA;
+});
+
+
+// Alternatyva. ATKREIPTI DĖMESĮ Į {} SKLIAUSTUS IR Į 'RETURN'
+
+const sortedDaugTasku2 = daugTasku.toSorted((a, b) => {
+
+    const sumaA = a.taskai.reduce((suma, dabartinis) => {
+        return suma + dabartinis.taskas;
+    }, 0);
+
+    const sumaB = b.taskai.reduce((suma, dabartinis) => {
+        return suma + dabartinis.taskas;
+    }, 0);
+
+    return sumaB - sumaA;
+});
+
+console.log(sortedDaugTasku);
+console.log('\n');
 
 
 
+// 5 etapas ----------------------------------------------------------------------------------------------
+sortedDaugTasku.forEach((obj, index) => {
+
+    const suma = obj.taskai.reduce((s, t) => s + t.taskas, 0);
+    console.log(`Eilė nr. ${index + 1}: Suma = ${suma}`);
+});
 
 
 
+console.log('\n\n\nMASYVAS 2');
+console.log('\n');
 
 
 
+sortedDaugTasku2.forEach((obj, index) => {
 
-
-
-
+    const suma = obj.taskai.reduce((s, t) => s + t.taskas, 0);
+    console.log(`Eilė nr. ${index + 1}: Suma = ${suma}`);
+});
 
 
 
@@ -217,14 +307,50 @@ console.log('%c\n\n************ TASK 4 ************%c', 'color: deeppink;', 'col
 */
 
 
+class Div {
+
+    static visiDivai = [];
+
+    static visuSpalva(color) {
+
+        this.visiDivai.forEach(obj => {
+            obj.spalva(color);
+        });
+    }
+
+    constructor() {
+        const bodyTag = document.querySelector('body');
+        this.divTag = document.createElement('div');
+        const text = rand(1000, 9999);
+        this.divTag.innerText = text;
+        bodyTag.appendChild(this.divTag);
+
+        this.constructor.visiDivai.push(this);
+    }
+
+    spalva(color) {
+        if (this) {
+            this.divTag.style.color = color;
+        }
+        return;
+    }
+};
 
 
+const div1 = new Div();
+const div2 = new Div();
+const div3 = new Div();
+const div4 = new Div();
 
 
+div1.spalva(randColor());
+div2.spalva('crimson');
+div3.spalva(randColor());
+div4.spalva(randColor());
 
+console.log(div1);
 
-
-
+// Div.visuSpalva('green');
 
 
 
