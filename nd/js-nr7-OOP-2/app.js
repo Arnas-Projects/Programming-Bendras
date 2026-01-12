@@ -389,7 +389,7 @@ console.log('%c\n\n************ TASK 6 ************%c', 'color: deeppink;', 'col
 /*
     Sukurti klasę Ratai. Klasė turi dvi savybes: kiekis ir dydis. 
     
-    Abi savybės įrašomos objelto kūrimo metu. 
+    Abi savybės įrašomos objekto kūrimo metu. 
     
     Sukurti klasę Dviratis ir klasę Automobilis. 
     
@@ -403,11 +403,87 @@ console.log('%c\n\n************ TASK 6 ************%c', 'color: deeppink;', 'col
 */
 
 
+class Ratai {
+
+    constructor(kiekis, dydis) {
+        this.kiekis = kiekis;
+        this.dydis = dydis;
+    }
+};
+
+const wheels1 = new Ratai(100, 16);
+console.log(wheels1);
+
+
+// --------------------------------------------------------------------------
+
+class Dviratis extends Ratai {
+
+    constructor(dydis, brand) {
+        super(2, dydis);
+        this.gamintojas = brand;
+    }
+};
+
+const bike1 = new Dviratis(14, 'Panther');
+console.log(bike1);
+
+
+// --------------------------------------------------------------------------
+
+class Automobilis extends Ratai {
+
+    constructor(dydis, brand) {
+        super(4, dydis);
+        this.gamintojas = brand;
+    }
+};
+
+const car1 = new Automobilis(16, 'Mitsubishi');
+console.log(car1);
 
 
 
+// --------------------------------------------------------------------------------------------------------------------
+
+// Alternatyva - half correct
+// class Ratai {
+
+//     constructor(kiekis, dydis) {
+//         this.kiekis = kiekis;
+//         this.dydis = dydis;
+//     }
+// };
+
+// const wheels1 = new Ratai(4, 16);
+// console.log(wheels1);
 
 
+// // --------------------------------------------------------------------------
+
+// class Dviratis extends Ratai {
+
+//     constructor(kiekis, dydis, brand) {
+//         super(kiekis, dydis);
+//         this.gamintojas = brand;
+//     }
+// };
+
+// const bike1 = new Dviratis(35, 14, 'Panther');
+// console.log(bike1);
+
+
+// // --------------------------------------------------------------------------
+
+// class Automobilis extends Dviratis {
+
+//     constructor(kiekis, dydis, brand) {
+//         super(kiekis, dydis, brand);
+//     }
+// };
+
+// const car1 = new Automobilis(4, 16, 'Mitsubishi');
+// console.log(car1);
 
 
 
