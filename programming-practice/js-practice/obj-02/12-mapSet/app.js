@@ -17,6 +17,8 @@ console.log(array[2]); // gauti baravyką
 
 const mapas = new Map(); // pilnas, sutrumpinto varianto nėra
 
+console.log(`Type: ${typeof mapas}`);
+
 mapas.set('spalva1', 'crimson');
 mapas.set('spalva2', 'blue');
 mapas.set('grybas', 'baravykas');

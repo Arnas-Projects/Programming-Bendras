@@ -189,71 +189,134 @@ class Troleibusas2 {
         this.constructor.visiKeleiviai += keleiviuSkaicius;
     }
 
-    constructor() {
+
+    constructor(trolleyNr) {
+        this.troleibusoNr = trolleyNr;
         this.keleiviuSkaicius = 0;
     }
 
+
     ilipa(keleiviuSkaicius) {
-        this.constructor.keleiviuSkaicius += keleiviuSkaicius;
-        console.log(`\nĮlipo keleivių: ${keleiviuSkaicius}`);
+        this.keleiviuSkaicius += keleiviuSkaicius;
+        this.constructor.visiKeleiviai += keleiviuSkaicius;
+        console.log(`\nTrulikas Nr. ${this.troleibusoNr} \nĮlipo keleivių: ${keleiviuSkaicius}`);
     }
+
 
     islipa(keleiviuSkaicius) {
 
         if (keleiviuSkaicius > this.keleiviuSkaicius) {
-            this.constructor.keleiviuSkaicius = 0;
+            this.keleiviuSkaicius = 0;
             console.log('\nKeleivių skaičius negali būti mažiau nei 0');
         } else {
-            this.constructor.keleiviuSkaicius -= keleiviuSkaicius
-            console.log(`\nIšlipo keleivių: ${keleiviuSkaicius}`);
+            this.keleiviuSkaicius -= keleiviuSkaicius
+            console.log(`\nTrulikas Nr. ${this.troleibusoNr} \nIšlipo keleivių: ${keleiviuSkaicius}`);
+        }
+
+        if (keleiviuSkaicius > this.constructor.visiKeleiviai) {
+            this.constructor.visiKeleiviai = 0;
+        } else {
+            this.constructor.visiKeleiviai -= keleiviuSkaicius
         }
     }
 
-    vaziuoja() {
 
+    vaziuoja() {
         const KeleiviaiTroleibuse = this.keleiviuSkaicius;
         console.log(`\nKeleivių kiekis: ${KeleiviaiTroleibuse}`);
     }
 
+
     keleiviuSkaiciusVisuoseTroleibusuose() {
-        console.log(`Visų troleibusų keleivių skaičius: ${this.visiKeleiviai}`);
+        console.log(`Visų troleibusų keleivių skaičius: ${this.constructor.visiKeleiviai}`);
     }
 }
 
 
-const T1 = new Troleibusas2();
-const T2 = new Troleibusas2();
+const T1 = new Troleibusas2(1);
+const T2 = new Troleibusas2(2);
 // const T3 = new Troleibusas2();
 
 T1.ilipa(2);
+T1.ilipa(2);
+T1.ilipa(2);
+
+T2.ilipa(10);
 
 T1.vaziuoja();
-
-// console.log(T1);
-
+T2.vaziuoja();
 
 
+T1.islipa(2);
 
+T1.vaziuoja();
+T2.vaziuoja();
 
+console.log(T1);
 
-
-
-
-
+T1.keleiviuSkaiciusVisuoseTroleibusuose();
 
 
 // ---------------------------------------------------------------------------------------------------------
-// (MAP) Sukurti klasę PirkiniuKrepselis. Konstruktoriuje 
-// sukurti savybę turinys, kuri yra Map tipo objektas. 
-// Sukurti tris metodus: idetiSureli(kiekis), idetiPieno(kiekis), 
-// idetiDuonos(kiekis). Parašyti metodą krepselioTurinys(), 
-// kuris į konsolę išvestų produktų sąrašą (turinys kintamąjį). 
-// Pridėti tuos pačius produktus galima po kelis kartus, tokiu 
-// atveju produktų kiekis turėtų sumuotis.
+/*
+    (MAP) Sukurti klasę PirkiniuKrepselis. 
+    
+    Konstruktoriuje sukurti savybę turinys, 
+    kuri yra Map tipo objektas. 
+    
+    Sukurti tris metodus: idetiSureli(kiekis), 
+    idetiPieno(kiekis), idetiDuonos(kiekis). 
+    
+    Parašyti metodą krepselioTurinys(), kuris 
+    į konsolę išvestų produktų sąrašą (turinys kintamąjį). 
+    
+    Pridėti tuos pačius produktus galima po kelis kartus, 
+    tokiu atveju produktų kiekis turėtų sumuotis.
+*/
 console.log('%c\n\n************ Task 5 (MAP) ************%c', 'color: deeppink;', 'color: inherit;');
 
 
+class PirkiniuKrepselis {
 
+    constructor() {
+        this.turinys = new Map();
+    }
+
+    idetiSureli(kiekis) {
+        const dabartinisKiekis = this.turinys.get('Sūrelis') || 0;
+        this.turinys.set('Sūrelis', dabartinisKiekis + kiekis);
+    }
+
+    idetiPieno(kiekis) {
+        const dabartinisKiekis = this.turinys.get('Pienas') || 0;
+        this.turinys.set('Pienas', dabartinisKiekis + kiekis);
+    }
+
+    idetiDuonos(kiekis) {
+        const dabartinisKiekis = this.turinys.get('Duona') || 0;
+        this.turinys.set('Duona', dabartinisKiekis + kiekis);
+    }
+
+    krepselioTurinys() {
+        console.log('\nKrepšelio turinys:');
+        this.turinys.forEach((kiekis, preke) => {
+            console.log(`Prekė: ${preke} | Kiekis, vnt: ${kiekis}`);
+        });
+    }
+
+};
+
+const cart1 = new PirkiniuKrepselis();
+
+console.log(cart1);
+
+cart1.idetiSureli(5);
+cart1.idetiPieno(2);
+cart1.idetiDuonos(1);
+
+cart1.idetiSureli(1);
+
+cart1.krepselioTurinys();
 
 
 
@@ -504,7 +567,7 @@ class Krepsys {
 const krepsys = new Krepsys();
 
 
-while(krepsys.deti(new Grybas())) {
+while (krepsys.deti(new Grybas())) {
 
 }
 
