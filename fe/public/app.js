@@ -7235,6 +7235,15 @@ var serverUrl = 'http://localhost/items';
 var initApp = function initApp(_) {
   console.log('App started');
   initCreateForm();
+  initProductsList();
+  var allCloseBtns = document.querySelectorAll('[data-bs-dismiss="modal"]');
+  allCloseBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var modal = btn.closest('.modal');
+      modal.style.display = 'none';
+    });
+  });
 };
 var initCreateForm = function initCreateForm(_) {
   // Randam formą ir mygtuką
@@ -7242,7 +7251,8 @@ var initCreateForm = function initCreateForm(_) {
   var createBtn = form.querySelector('[data-create-btn]');
 
   // Pridedam mygtuko mygtuko paspaudimo eventą
-  createBtn.addEventListener('click', function (_) {
+  createBtn.addEventListener('click', function (e) {
+    e.preventDefault(); // sustabdom formos siuntimą
     // Surandam visus inputus su name atributu
     var allInputs = form.querySelectorAll('[name]');
     // Sukuriam tuščią objektą prekės duomenims laikyti
@@ -7254,7 +7264,11 @@ var initCreateForm = function initCreateForm(_) {
       var value = input.value; // input reikšmė
       itemData[name] = value; // itemData['pavadinimas'] = 'Tokia tai prekė'
     });
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post(serverUrl, itemData).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post(serverUrl, itemData) // dirba serverio kodas
+    .then(function (res) {
+      // sėkmingas atsakymas iš serverio ir toliau dirba kliento kodas
+      // res --> pilnas atsakymo duomenų atsakymas
+      // data --> pilnas atsakymas iš serverio
       console.log('Prekė sukurta sėkmingai:', res.data);
       // Išvalom formą
       form.reset();
@@ -7262,6 +7276,54 @@ var initCreateForm = function initCreateForm(_) {
       console.error('Klaida kuriant prekę:', err);
     });
   });
+};
+
+// ----------------------------------------------------------------------------------------------------------
+// READ
+
+var initProductsList = function initProductsList(_) {
+  // Surandam prekių sąrašo vietą ir šabloną
+  var productsListEl = document.querySelector('[data-products-list]');
+  var productItemTemplate = document.querySelector('[data-product-template]');
+  axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(serverUrl).then(function (res) {
+    var products = res.data.items; // gaunam prekių masyvą (items) iš serverio atsakymo (data)
+    products.forEach(function (product) {
+      // einame per visas prekes
+      // Kuriam naują prekę iš šablono
+      // Klonuojam tuščią šabloną
+      var productEl = productItemTemplate.content.cloneNode(true);
+      // Užpildom duomenis
+      // productEl.querySelector('[data-name]') - suranda elementą su data-name atributu klonuotame šablone
+      // product.productName - prekės pavadinimas iš serverio
+      // .textContent - įterpia tekstą į elementą
+      productEl.querySelector('[data-name]').textContent = product.productName;
+      productEl.querySelector('[data-name]').textContent = product.productName;
+      productEl.querySelector('[data-price]').textContent = "Kaina: ".concat(product.productPrice, " EUR");
+      productEl.querySelector('[data-quantity]').textContent = "Kiekis sand\u0117lyje: ".concat(product.productQuantity);
+      productEl.querySelector('[data-description]').textContent = product.productDescription;
+
+      // DELETE
+
+      var delBtn = productEl.querySelector('[data-delete-btn]');
+      delBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log("Trinama prek\u0117 su ID: ".concat(product.id));
+        e.preventDefault();
+        initDeleteModal(product.id);
+        // čia bus trynimo kodas
+      });
+
+      // Pridedam šabloną su prekėm į sąrašą
+      productsListEl.appendChild(productEl);
+    });
+  })["catch"](function (err) {
+    console.error('Klaida gaunant prekes:', err);
+  });
+};
+var initDeleteModal = function initDeleteModal(id) {
+  var deleteModal = document.querySelector('[data-delete-modal]');
+  // čia bus modalo atidarymo ir uždarymo logika
+  deleteModal.style.display = 'block';
 };
 initApp();
 

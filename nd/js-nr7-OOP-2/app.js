@@ -239,7 +239,7 @@ for (let i = 0; i < 10; i++) {
     daugTasku.push(naujasTaskaiObj);
 };
 
-console.log(daugTasku);
+console.log(daugTasku, typeof daugTasku);
 console.log('\n');
 
 
