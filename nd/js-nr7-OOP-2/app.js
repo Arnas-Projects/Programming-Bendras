@@ -618,7 +618,7 @@ console.log('%c\n\n************ TASK 8 ************%c', 'color: deeppink;', 'col
 
 class Senelis {
 
-    constructor(surname = 'Baranauskas', name) {
+    constructor(name, surname = 'Baranauskas') {
         this.pavarde = surname;
         this.vardas = name;
     }
@@ -633,8 +633,8 @@ class Senelis {
 class Tevas extends Senelis {
 
     constructor(name) {
-        super();
-        this.vardas = name;
+        super(name);
+        // this.vardas = name;
     }
 };
 
@@ -643,15 +643,15 @@ class Tevas extends Senelis {
 class Vaikas extends Tevas {
 
     constructor(name) {
-        super();
-        this.vardas = name;
+        super(name);
+        // this.vardas = name;
     }
 };
 
 // ------------------------------------------------------------------------------------------------------------------------
 
 
-const senis = new Senelis(undefined, 'Jonas');
+const senis = new Senelis('Jonas');
 const tetis = new Tevas('Giedrius');
 const vaikis = new Vaikas('Tomas');
 
@@ -664,8 +664,58 @@ senis.kas();
 tetis.kas();
 vaikis.kas();
 
+console.log('\n\n\n');
 
 
+// ------------------------------------------------------------------------------------------------------------------------
+
+// // PROTINGOS SMEGENINĖS KODO PAVYZDYS
+
+// // Pavyzdys skirtas atvejams, kai constructor() norime perduodi daug hardcodintų reikšmių kuriant naują objektą.
+
+// class Senelis2 {
+//     // We pass ONE object and set defaults inside the curly braces
+//     constructor({ 
+//         name, 
+//         surname = 'Baranauskas', 
+//         age = 20, 
+//         profession = 'Kalvis', 
+//         meritalStatus = 'Vedęs' 
+//     } = {}) { 
+//         this.vardas = name;
+//         this.pavarde = surname;
+//         this.amzius = age;
+//         this.profesija = profession;
+//         this.seimyninePadetis = meritalStatus;
+//     }
+
+//     kas() {
+//         console.log(`Vardas: ${this.vardas} | Pavardė: ${this.pavarde} | Padėtis: ${this.seimyninePadetis}`);
+//     }
+// };
+
+// // --------------------------------------------------------------------------------
+// // Usage: You can skip any property you want!
+// // --------------------------------------------------------------------------------
+
+// // 1. Only name (everything else is default)
+// const senis1 = new Senelis2({ name: 'Jonas' });
+
+// // 2. Name and marital status ONLY (no 'undefined' needed!)
+// const senis2 = new Senelis2({ 
+//     name: 'Petras', 
+//     meritalStatus: 'Išsituokęs' 
+// });
+
+// // 3. Changing just the profession
+// const senis3 = new Senelis2({ 
+//     name: 'Antanas', 
+//     profession: 'Programuotojas' 
+// });
+
+// senis1.kas();
+// senis2.kas();
+// senis3.kas();
 
 
 
