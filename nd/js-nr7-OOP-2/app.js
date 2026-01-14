@@ -489,8 +489,6 @@ console.log(car1);
 
 
 
-
-
 console.log('%c\n\n************ TASK 7 ************%c', 'color: deeppink;', 'color: inherit;');
 /*
     Sukurti klasę Paukstis, kuris turi tris metodus bega(), 
@@ -509,20 +507,86 @@ console.log('%c\n\n************ TASK 7 ************%c', 'color: deeppink;', 'col
 */
 
 
+class Paukstis {
+
+    vardas() {
+        return `Šis paukštis yra: ${this.constructor.name}`
+    }
+
+    bega() {
+        console.log(`${this.vardas()} ir šis paukštis bėga.`);
+    }
 
 
+    plaukia() {
+        console.log(`${this.vardas()} ir šis paukštis plaukia.`);
+    }
 
 
+    skrenda() {
+        console.log(`${this.vardas()} ir šis paukštis skrenda.`);
+    }
+};
+
+// ------------------------------------------------------------------------------------------------------------------------
+
+class Antis extends Paukstis {
 
 
+};
+
+// ------------------------------------------------------------------------------------------------------------------------
+
+class Pingvinas extends Paukstis {
+
+    bega() {
+        console.log(`${this.vardas()} ir šis paukštis nebėga.`);
+    }
+
+    skrenda() {
+        console.log(`${this.vardas()} ir šis paukštis neskrenda.`);
+    }
+};
+
+// ------------------------------------------------------------------------------------------------------------------------
+
+class Strutis extends Paukstis {
+
+    plaukia() {
+        console.log(`${this.vardas()} ir šis paukštis neplaukia.`);
+    }
 
 
+    skrenda() {
+        console.log(`${this.vardas()} ir šis paukštis neskrenda.`);
+    }
+};
 
 
+const paukstukas = new Paukstis();
+
+const anciukas = new Antis();
+const pingvinukas = new Pingvinas();
+const struciukas = new Strutis();
 
 
+anciukas.bega();
+anciukas.plaukia();
+anciukas.skrenda();
 
+console.log('\n');
 
+pingvinukas.bega();
+pingvinukas.plaukia();
+pingvinukas.skrenda();
+
+console.log('\n');
+
+struciukas.bega();
+struciukas.plaukia();
+struciukas.skrenda();
+
+console.log('\n');
 
 
 
@@ -552,16 +616,53 @@ console.log('%c\n\n************ TASK 8 ************%c', 'color: deeppink;', 'col
 */
 
 
+class Senelis {
+
+    constructor(surname = 'Baranauskas', name) {
+        this.pavarde = surname;
+        this.vardas = name;
+    }
+
+    kas() {
+        console.log(`Asmuo: ${this.constructor.name} | Vardas: ${this.vardas} | Pavardė: ${this.pavarde}`);
+    }
+};
+
+// ------------------------------------------------------------------------------------------------------------------------
+
+class Tevas extends Senelis {
+
+    constructor(name) {
+        super();
+        this.vardas = name;
+    }
+};
+
+// ------------------------------------------------------------------------------------------------------------------------
+
+class Vaikas extends Tevas {
+
+    constructor(name) {
+        super();
+        this.vardas = name;
+    }
+};
+
+// ------------------------------------------------------------------------------------------------------------------------
 
 
+const senis = new Senelis(undefined, 'Jonas');
+const tetis = new Tevas('Giedrius');
+const vaikis = new Vaikas('Tomas');
 
 
+console.log(senis, tetis, vaikis);
 
+console.log('\n');
 
-
-
-
-
+senis.kas();
+tetis.kas();
+vaikis.kas();
 
 
 
