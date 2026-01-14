@@ -355,36 +355,6 @@ console.log(div1);
 
 
 
-
-
-console.log('%c\n\n************ TASK 5 ************%c', 'color: deeppink;', 'color: inherit;');
-/*
-    Sukurti klasę Post. Kuriant objektą iš šios klasės, reikia 
-    įrašyti id savybę, pasirinktinai nuo 1 iki 100. 
-    
-    Objektas turi turėti visas savybes gautas iš serverio 
-    adresu: https://jsonplaceholder.typicode.com/posts/1 
-    (objektas su id: 1).
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 console.log('%c\n\n************ TASK 6 ************%c', 'color: deeppink;', 'color: inherit;');
 /*
     Sukurti klasę Ratai. Klasė turi dvi savybes: kiekis ir dydis. 
@@ -721,6 +691,62 @@ console.log('\n\n\n');
 
 
 
+
+console.log('%c\n\n************ TASK 5 ************%c', 'color: deeppink;', 'color: inherit;');
+/*
+    Sukurti klasę Post. Kuriant objektą iš šios klasės, reikia 
+    įrašyti id savybę, pasirinktinai nuo 1 iki 100. 
+    
+    Objektas turi turėti visas savybes gautas iš serverio 
+    adresu: https://jsonplaceholder.typicode.com/posts/1 
+    (objektas su id: 1).
+*/
+
+
+
+class Post {
+    constructor(id) {
+        this.id = id;
+        this.title = '';
+        this.body = '';
+        this.userId = null;
+
+        if (!this.id) {
+            return;
+        }
+    }
+
+    // Since we can't make the constructor async, we use a method
+    async load() {
+        try {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${this.id}`);
+            const data = await response.json();
+
+            // We "hydrate" the object with data from the server
+            this.title = data.title;
+            this.body = data.body;
+            this.userId = data.userId;
+            
+            console.log(`Postas ${this.id} užkrautas sėkmingai!`);
+        } catch (error) {
+            console.error("Klaida užkraunant postą:", error);
+        }
+    }
+
+    render() {
+        console.log(`--- ${this.title.toUpperCase()} ---`);
+        console.log(this.body);
+    }
+}
+
+// Usage
+const post1 = new Post(77);
+
+// We must call the async method
+post1.load().then(() => {
+    post1.render(); 
+    console.log(post1); // Now it has all properties
+});
 
 
 
