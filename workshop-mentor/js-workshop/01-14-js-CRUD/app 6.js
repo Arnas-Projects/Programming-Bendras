@@ -1,18 +1,13 @@
-
-
-
 const taskInput = document.querySelector('.taskInput');
 const addTaskBtn = document.querySelector('.addTaskBtn');
 const taskList = document.querySelector('.taskList');
 
 
-// -----------------------------------------------------------
-// Save to localStorage
+// save to Local Storage
 const saveToLocalStorage = _ => {
-    const nodeList = taskList.querySelectorAll('li'); // gaunam Node.list
-    const nodeListToArray = [...nodeList]; // Node.List paverčiame į masyvą (array)
-    const tasks = nodeListToArray.map(li =>
-    (
+    const nodeList = taskList.querySelectorAll('li'); // gaunam Node.List
+    const nodeListToArray = [...nodeList]; // Node.List paverčiam į masyvą (array)
+    const tasks = nodeListToArray.map(li => (
         {
             text: li.querySelector('span').textContent,
             completed: li.querySelector('.checkbox').checked
@@ -20,32 +15,25 @@ const saveToLocalStorage = _ => {
     ));
 
     localStorage.setItem('todos', JSON.stringify(tasks));
-};
+}
 
 
+// load from local storage 
 
-// -----------------------------------------------------------
-// Load from localStorage
-
-const loadFromLocalStorage = _ => {
+const loadFromLocalStorage = () => {
     const savedTasks = JSON.parse(localStorage.getItem('todos')) || [];
     savedTasks.forEach(({ text, completed }) => addTask(text, completed));
-};
+}
 
 
-// -----------------------------------------------------------
-// CREATE
+// create
 const addTask = (text, completed = false) => {
-    
     const taskText = text || taskInput.value.trim();
-
-    if (!taskText) {
+    if(!taskText) {
         return;
     }
-
     const li = document.createElement('li');
-    // li.classList.add('.flex');
-    // li.innerText = taskText;
+    // li.textContent = taskText; 
     li.innerHTML = `
         <input type="checkbox" class="checkbox">
         <span>${taskText}</span>
@@ -54,52 +42,44 @@ const addTask = (text, completed = false) => {
             <button class="deleteBtn"><i class="fa-solid fa-trash"></i></button>
         </div>
     `
-
     taskList.appendChild(li);
     taskInput.value = '';
 
-    // -----------------------------------------------------------
-    // UPDATE
+    // update
     const editBtn = li.querySelector('.editBtn');
     const checkbox = li.querySelector('.checkbox');
 
-    checkbox.addEventListener('change', _ => {
+    checkbox.addEventListener('change', () =>{
         editBtn.disabled = checkbox.checked;
         editBtn.style.pointerEvents = checkbox.checked ? 'none' : 'auto';
-        editBtn.style.opacity = checkbox.checked ? '0.5' : '1';
-
+        editBtn.style.opacity = checkbox.checked ? '0.5': '1';
         li.style.textDecoration = checkbox.checked ? 'line-through' : 'none';
         li.style.textDecorationThickness = '2px';
-        li.style.textDecorationColor = 'black';
+        li.style.textDecorationColor = 'black'; 
         saveToLocalStorage();
-    });
+    })
 
-    editBtn.addEventListener('click', _ => {
-
-        if (!checkbox.checked) {
-            taskInput.value = li.querySelector('span').textContent;
-            li.remove();
-            saveToLocalStorage();
-        }
-
-    });
-
-
-    // -----------------------------------------------------------
-    // DELETE
-    li.querySelector('.deleteBtn').addEventListener('click', _ => {
+    editBtn.addEventListener('click', () => {
+        if(!checkbox.checked) {
+        taskInput.value = li.querySelector('span').textContent;
         li.remove();
         saveToLocalStorage();
-    });
+        }
+    })
+
+
+    //delete
+    li.querySelector('.deleteBtn').addEventListener('click', () => {
+        li.remove();
+        saveToLocalStorage();
+    })
 
     saveToLocalStorage();
-};
+}
 
-addTaskBtn.addEventListener('click', e => {
+addTaskBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    addTask(e);
-});
+    addTask();
+})
 
 loadFromLocalStorage();
-
-
