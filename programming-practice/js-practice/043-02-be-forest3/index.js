@@ -3,13 +3,17 @@
 
 const express = require('express');
 const fs = require('fs'); // failų sistemos modulis - biblioteka
+const bodyParser = require('body-parser');
 const app = express();
 const port = 80;
 // importuojam duomenis iš 'services.js' failo
 const { services } = require('./services');
 
-// Failai folderyje 'public' bus pasiekiami per naršyklę
-app.use(express.static('public')); // Nurodome, kad statiniai failai bus iš 'public' folderio
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: true })); // body duomenų parser'is
+
+app.use(express.static('public'));
 
 
 
@@ -117,12 +121,37 @@ app.get('/contact', (req, res) => {
     // skaitome tris atskirus failus. Toks skaitymas gali būti tik backend'e
     const top = fs.readFileSync('./html/top.html', 'utf8');
     const bottom = fs.readFileSync('./html/bottom.html', 'utf8');
-    const contact = fs.readFileSync('./html/contact.html', 'utf8');
+    let contact = fs.readFileSync('./html/contact.html', 'utf8');
+
+    const message = req.query.msg;
+
+    if (message === 'ok') { // rodom sėkmės žinutę
+        contact = contact.replace('{{successMessageDisplay}}', '');
+    } else { // nerodom sėkmės žinutės
+        contact = contact.replace('{{successMessageDisplay}}', 'style="display: none;"');
+    }
 
     const pageTitle = 'Contact Us';
     const topWithTitle = top.replace('{{title}}', pageTitle);
 
     res.send(topWithTitle + contact + bottom); // naršyklei atiduodam vieną "suklijuotą iš kelių" failą
+});
+
+
+app.post('/form-submit', (req, res) => {
+
+    const username = req.body.name;
+    const emailAddress = req.body.email;
+    const msg = req.body.message;
+
+    let data = fs.readFileSync('data.json', 'utf8'); // nuskaitome esamus duomenis
+    let json = JSON.parse(data); // paverčiame į JSON objektą
+    json.push({ username,emailAddress, msg }); // pridedame naują žinutę
+    data = JSON.stringify(json, null, 2); // paverčiame atgal į string'ą
+    fs.writeFileSync('data.json', data); // įrašome atgal į failą
+
+
+    res.redirect('/contact?msg=ok');
 });
 
 
