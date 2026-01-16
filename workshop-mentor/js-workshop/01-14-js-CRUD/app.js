@@ -5,17 +5,25 @@ const taskInput = document.querySelector('.taskInput');
 const addTaskBtn = document.querySelector('.addTaskBtn');
 const taskList = document.querySelector('.taskList');
 
+const toDoForm = document.querySelector('#toDoForm');
+
+// Neleidžiame puslapiui refreshintis, kai pridedam task'ą. Taip pat leidžia pridėti task'ą su ENTER button
+toDoForm.addEventListener('submit', e => {
+    e.preventDefault();
+    addTask();
+});
+
 
 // -----------------------------------------------------------
 // Save to localStorage
-const saveToLocalStorage = _ => {
+const saveToLocalStorage = e => {
     const nodeList = taskList.querySelectorAll('li'); // gaunam Node.list
     const nodeListToArray = [...nodeList]; // Node.List paverčiame į masyvą (array)
     const tasks = nodeListToArray.map(li =>
     (
         {
-            text: li.querySelector('span').textContent,
-            completed: li.querySelector('.checkbox').checked
+            task_text: li.querySelector('span').textContent,
+            task_status: li.querySelector('.checkbox').checked
         }
     ));
 
@@ -29,15 +37,15 @@ const saveToLocalStorage = _ => {
 
 const loadFromLocalStorage = _ => {
     const savedTasks = JSON.parse(localStorage.getItem('todos')) || [];
-    savedTasks.forEach(({ text, completed }) => addTask(text, completed));
+    savedTasks.forEach(({ task_text, task_status }) => addTask(task_text, task_status));
 };
 
 
 // -----------------------------------------------------------
 // CREATE
-const addTask = (text, completed = false) => {
-    
-    const taskText = text || taskInput.value.trim();
+const addTask = (task_text, task_status = false) => {
+
+    const taskText = task_text || taskInput.value.trim();
 
     if (!taskText) {
         return;
@@ -63,14 +71,26 @@ const addTask = (text, completed = false) => {
     const editBtn = li.querySelector('.editBtn');
     const checkbox = li.querySelector('.checkbox');
 
+    if (task_status) {
+        checkbox.checked = true;
+        editBtn.disabled = true;
+        editBtn.style.pointerEvents = 'none';
+        editBtn.style.opacity = '0.5';
+
+        li.style.textDecoration ='line-through';
+        li.style.textDecorationThickness = '3px';
+        li.style.textDecorationColor = 'crimson';
+    }
+
+
     checkbox.addEventListener('change', _ => {
         editBtn.disabled = checkbox.checked;
         editBtn.style.pointerEvents = checkbox.checked ? 'none' : 'auto';
         editBtn.style.opacity = checkbox.checked ? '0.5' : '1';
 
         li.style.textDecoration = checkbox.checked ? 'line-through' : 'none';
-        li.style.textDecorationThickness = '2px';
-        li.style.textDecorationColor = 'black';
+        li.style.textDecorationThickness = '3px';
+        li.style.textDecorationColor = 'crimson';
         saveToLocalStorage();
     });
 
@@ -97,7 +117,7 @@ const addTask = (text, completed = false) => {
 
 addTaskBtn.addEventListener('click', e => {
     e.preventDefault();
-    addTask(e);
+    addTask();
 });
 
 loadFromLocalStorage();
