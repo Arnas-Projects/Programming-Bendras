@@ -12,7 +12,7 @@ const port = 80;
 // ------------------------------------------------------------------------------------------------------------------
 
 // Formuoja atsakymą su CORS antraštėmis
-app.use(cors()); 
+app.use(cors());
 
 // Gaunam visus prekių duomenis
 app.use(bodyParser.json());
@@ -27,17 +27,46 @@ app.post('/items', (req, res) => {
     // console.log('Gauti naujos prekės duomenys', newItem);
     // const id = Date.now(); // Sukuriam unikalų ID pagal laiką
     const id = uuidV4(); // Sukuriam unikalų ID pagal UUID
+
     newItem.id = id;
-    
-    console.log('Gauti naujos prekės duomenys', newItem);
+
+    // console.log('Gauti naujos prekės duomenys', newItem);
 
     // Perskaitom esamus duomenis iš failo (sinchroniškai iš products.json)
 
-    // const productsData = fs.readFileSync('products.json', 'utf-8');
-    // const products = JSON.parse(productsData);
+    // Skaitom failą kaip tekstą
+    const productsData = fs.readFileSync('products.json', 'utf-8');
+    // verčiam tekstą į JS objektą (masyvą)
+    const products = JSON.parse(productsData);
+    // Pridedam naują prekę į esamų prekių masyvą
+    products.push(newItem);
+    // Išsaugom atnaujintą prekių masyvą atgal į products.json failą
+    fs.writeFileSync('products.json', JSON.stringify(products, null, 2));
 
-    res.send({ message: 'Nauja prekė sukurta sėkmingai', item: newItem });
+    // Siunčiame objektą, kuris yra verčiamas į JSON formato tekstą
+    res.send({
+        message: 'Nauja prekė sukurta sėkmingai',
+        status: 'Success',
+        item: newItem
+    });
 
+});
+
+
+// Visų prekių gavimas
+app.get('/items', (req, res) => {
+
+    // Skaitom failą kaip tekstą
+    const productsData = fs.readFileSync('products.json', 'utf-8');
+    // Konvertuojam tekstą į JS masyvą
+    const products = JSON.parse(productsData);
+    // siunčiame objektą, kuris yra verčiamas į JSON formato tekstą
+
+    res.send({
+        message: 'Item retrieved successfully',
+        status: 'Success',
+        items: products
+    });
 });
 
 
