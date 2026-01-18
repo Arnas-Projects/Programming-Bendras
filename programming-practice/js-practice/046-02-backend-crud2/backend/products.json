@@ -7,10 +7,10 @@
     "id": "ea36b907-167d-4afb-8e8e-77c1c1743e96"
   },
   {
-    "productName": "Vištiena",
-    "productPrice": "4.99",
-    "productQuantity": "2.5",
-    "productDescription": "Vištienos filė kepsniams.",
+    "productName": "Vištienos filė",
+    "productPrice": "3.99",
+    "productQuantity": "4",
+    "productDescription": "Vištiena. Mėsa tinka kepsniams ir t.t.",
     "id": "023fff5c-9eab-4d5b-b11a-c5c283472bc0"
   },
   {
@@ -26,26 +26,5 @@
     "productQuantity": "5",
     "productDescription": "Raudoni obuoliai.",
     "id": "b61a5e58-42f7-419c-9076-b3aba96b64f7"
-  },
-  {
-    "productName": "Preke",
-    "productPrice": "2.52",
-    "productQuantity": "3",
-    "productDescription": "Pigi preke.",
-    "id": "b8cbb1f7-c812-445c-9058-69cc1dc16a44"
-  },
-  {
-    "productName": "Dar viena preke",
-    "productPrice": "1.5",
-    "productQuantity": "2",
-    "productDescription": "preke",
-    "id": "be5f69e5-4820-4293-b24e-30d8ed42c52e"
-  },
-  {
-    "productName": "Preke",
-    "productPrice": "1.5",
-    "productQuantity": "2",
-    "productDescription": "prekes preke",
-    "id": "1ea7546b-4d8e-45da-943b-8a054c24abef"
   }
 ]

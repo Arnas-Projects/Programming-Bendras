@@ -70,6 +70,49 @@ app.get('/items', (req, res) => {
 });
 
 
+// Prekės trynimas pagal ID
+app.delete('/items/:id', (req, res) => { // turim URL su parametro id, kuris yra produkto id
+    // setTimeout(_ => {
+    const id = req.params.id; // imame id iš url. // Jeigu id būtų skaičius, reikėtų naudoti parseInt(req.params.id);
+    const productsData = fs.readFileSync('products.json', 'utf-8'); // skaitome failą kaip tekstą
+    let products = JSON.parse(productsData); // konvertuojam tekstą į JavaScript masyvą
+    products = products.filter(product => product.id !== id); // filtruojam prekes, paliekam tik tas kurios neturi trynimo id
+    fs.writeFileSync('products.json', JSON.stringify(products, null, 2)); // išsaugom atnaujintą prekių masyvą atgal į products.json failą
+
+    res.send({
+        message: 'Item deleted successfully',
+        status: 'Success'
+    });
+    // }, 3000); // dirbtinis vėlinimas 3 sekundėmis
+});
+
+
+// Prekės atnaujinimas pagal ID
+app.put('/items/:id', (req,res) => {
+
+    const id = req.params.id; // paimam id iš URL, kad žinotume, kurią prekę atnaujinti
+    const updatedItem = req.body; // gaunam atnaujintus duomenis iš užklausos body
+    const productsData = fs.readFileSync('products.json', 'utf-8'); // skaitom failą kaip tekstą
+    let products = JSON.parse(productsData); // konvertuojam tekstą į JavaScript masyvą
+    // einam per visas prekes ir randam tą, kurią reikia atnaujinti
+    products = products.map(product => {
+        if (product.id === id) {
+            // grąžinam atnaujintą prekę
+            return {
+                ...product, // išskleidžiam esamus prekės duomenis
+                ...updatedItem, // išskleidžiam atnaujintus duomenis (jie užrašys esamus)
+                id: id // užtikrinam, kad ID nepasikeis
+            };
+        }
+        return product; // grąžinam nepakeistą prekę
+    });
+    // Išsaugom atnaujintą prekių masyvą atgal į products.json failą
+    fs.writeFileSync('products.json', JSON.stringify(products, null, 2));
+    res.send({
+        message: 'Item updated successfully',
+        status: 'Success'
+    });
+});
 
 
 
