@@ -1,0 +1,35 @@
+.clock {
+    width: 300px;
+    height: 300px;
+    border: 10px solid #333;
+    border-radius: 50%;
+    position: relative;
+    margin: 20px auto;
+    background: white;
+}
+
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    background: black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.hour { width: 6px; height: 60px; margin-left: -3px; }
+.minute { width: 4px; height: 90px; margin-left: -2px; }
+.second { width: 2px; height: 120px; margin-left: -1px; background: red; }
+
+.center-dot {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 12px; height: 12px;
+    background: #333;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#digital-clock { text-align: center; font-size: 2rem; font-family: monospace; }
+.reminder-inputs { text-align: center; margin-top: 20px; }

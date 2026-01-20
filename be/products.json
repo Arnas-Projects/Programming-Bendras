@@ -1,23 +1,37 @@
 [
   {
-    "productName": "",
+    "productName": "Riesutai",
+    "productPrice": "1.52",
+    "productQuantity": "5",
+    "productDescription": "Sudyti riesutai",
+    "id": "7e3d4fc8-711f-48c5-83e2-0a8bc19fec2e"
+  },
+  {
+    "productName": "Kava",
     "productPrice": "",
     "productQuantity": "",
     "productDescription": "",
-    "id": "2b2befa5-70b3-4b5f-98e7-2295321a1ec8"
+    "id": "b4acde72-dc23-4a0c-ab62-c30a85912fd4"
   },
   {
-    "productName": "Pienas",
-    "productPrice": "1.32",
-    "productQuantity": "3",
-    "productDescription": "Karves pienas",
-    "id": "0e90cb9e-df8f-4245-a584-aeb7ec3ec56a"
+    "productName": "Tirpi kava",
+    "productPrice": "2",
+    "productQuantity": "45",
+    "productDescription": "213",
+    "id": "edca41ab-591e-4171-906c-7cc56db8b04c"
+  },
+  {
+    "productName": "Obuoliai",
+    "productPrice": "2323213",
+    "productQuantity": "",
+    "productDescription": "",
+    "id": "88d3d624-85be-4f03-b22f-a44e569b973e"
   },
   {
     "productName": "Duona",
     "productPrice": "2",
-    "productQuantity": "15",
-    "productDescription": "asffqw",
-    "id": "b556d57a-df8d-4d06-9208-b7ecc3c6c38b"
+    "productQuantity": "2",
+    "productDescription": "sfasf",
+    "id": "8e1db993-e6ad-433e-a18c-efcc2d69786a"
   }
 ]
