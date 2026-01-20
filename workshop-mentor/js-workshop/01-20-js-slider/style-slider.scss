@@ -1,6 +1,3 @@
-
-
-
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +6,8 @@
 }
 
 body {
+    display: flex;
+    justify-content: center;
     background-color: #444;
     color: white;
 }
@@ -20,7 +19,102 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+    width: 1024px;
+
+    h1 {
+        // align-self: flex-start;
+        // margin-left: -30px;
+        margin-bottom: 25px;
+    }
+
+    h3 {
+        background-color: crimson;
+        padding: 15px 30px;
+        margin-bottom: 15px;
+        border-radius: 15px;
+    }
+
+    div.container {
+        // position: relative;
+
+        div.img-wrapper {
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        div.buttons {
+            display: flex;
+            // align-items: center;
+            // justify-content: space-between;
+            position: relative;
+            margin-bottom: 70px;
+
+            button {
+                cursor: pointer;
+                padding: 10px;
+                // display: inline-flex;
+                background-color: crimson;
+                color: white;
+                font-weight: 600;
+                border: 1px solid crimson;
+                border-radius: 10px;
+            }
+
+            button.left-btn {
+                position: absolute;
+                left: -15px;
+                top: -25px;
+            }
+
+            button.play-btn {
+                position: absolute;
+                top: -50px;
+                left: 350px;
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                // align-items: center;
+                // justify-content: center;
+                font-size: 24px;
+            }
+
+            button.right-btn {
+                position: absolute;
+                top: -25px;
+                right: -15px;
+            }
+        }
+    }
+
+    div.btns-container {
+        display: flex;
+        justify-content: space-between;
+        width: 500px;
+
+        button {
+            padding: 15px;
+            border: 1px solid seagreen;
+            background-color: seagreen;
+            border-radius: 15px;
+            color: white;
+            font-weight: 600;
+        }
+    }
 }
 
+@media (max-width: 880px) {
+    div.container, div.btns-container {
+        width: 90vw; /* Takes up 90% of the small screen width */
+    }
+    
+    div.container img {
+        width: 100%; /* Image shrinks to fit the container */
+        height: auto;
+    }
 
-
+    button.play-btn {
+        width: 20px; /* Smaller play button for mobile */
+        height: 20px;
+    }
+}
