@@ -130,15 +130,3 @@ leftBtn.addEventListener('click', () => {
     // Reset timer if not paused
     if (!isPaused) startTimer();
 });
-
-
-
-
-
-
-
-
-
-
-
-
