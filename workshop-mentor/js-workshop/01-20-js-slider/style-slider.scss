@@ -10,11 +10,12 @@ body {
     justify-content: center;
     background-color: #444;
     color: white;
+    height: 100vh;
 }
 
 
 section {
-    height: 100vh;
+    // height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +37,6 @@ section {
     }
 
     div.container {
-        // position: relative;
 
         div.img-wrapper {
             border-radius: 25px;
@@ -91,15 +91,16 @@ section {
     div.btns-container {
         display: flex;
         justify-content: space-between;
-        width: 500px;
+        // width: 500px;
 
         button {
-            padding: 15px;
-            border: 1px solid seagreen;
-            background-color: seagreen;
-            border-radius: 15px;
-            color: white;
-            font-weight: 600;
+            // padding: 15px;
+            // border: 1px solid seagreen;
+            // background-color: seagreen;
+            border-radius: 5px;
+            // color: white;
+            // font-weight: 600;
+            text-align: center;
         }
     }
 }
@@ -118,4 +119,33 @@ section {
         width: 20px; /* Smaller play button for mobile */
         height: 20px;
     }
+}
+
+// .img-wrapper img {
+//     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+// }
+
+// /* This class will be toggled by JS to create the effect */
+// .fade-out {
+//     opacity: 0;
+//     transform: translateX(-20px); /* Slides slightly left while fading */
+// }
+
+
+.img-wrapper img {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Moving Forward: Current image slides left and fades */
+.slide-next {
+    opacity: 0 !important;
+    transform: translateX(-25px) !important;
+}
+
+/* Moving Backward: Current image slides right and fades */
+.slide-prev {
+    opacity: 0 !important;
+    transform: translateX(25px) !important;
 }

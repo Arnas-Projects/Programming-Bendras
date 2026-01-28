@@ -60,11 +60,41 @@ const imgText = document.querySelector('h3');
 const navigationButtons = document.querySelectorAll('div.btns-container button');
 
 
-const updateSlider = index => {
-    currentImg.src = slides[index].img;
-    imgText.textContent = `${slides[index].text}`;
+const updateSlider = (index, direction = 'next') => {
+    const transitionClass = direction === 'next' ? 'slide-next' : 'slide-prev';
 
-    currentIndex = index;
+    currentImg.classList.add(transitionClass);
+
+    setTimeout(() => {
+        currentImg.src = slides[index].img;
+        imgText.textContent = `${slides[index].text}`;
+        currentIndex = index;
+
+        // Reset position instantly before fading back in
+        currentImg.style.transition = 'none';
+        // Place it on the opposite side so it "slides in"
+        currentImg.style.transform = direction === 'next' ? 'translateX(100px)' : 'translateX(-100px)';
+        currentImg.style.opacity = '0';
+
+        // Force a reflow to make the browser notice the position reset
+        currentImg.offsetHeight;
+
+        // Slide back to center
+        currentImg.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        currentImg.classList.remove('slide-next', 'slide-prev');
+        currentImg.style.transform = 'translateX(0)';
+        currentImg.style.opacity = '1';
+
+        // Update Thumbnails
+        const allThumbs = document.querySelectorAll('.btns-container button');
+        allThumbs.forEach((btn, i) => {
+            btn.style.opacity = (i === index) ? "1" : "0.5";
+            btn.style.transform = (i === index) ? "scale(1.1)" : "scale(1)";
+        });
+
+        const activeBtn = allThumbs[index];
+        activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }, 500);
 };
 
 
@@ -73,10 +103,9 @@ const startTimer = () => {
     stopTimer();
 
     timer = setInterval(() => {
-        // Move to next slide
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSlider(currentIndex);
-    }, 4000); // 3000ms = 3 seconds
+        let nextIndex = (currentIndex + 1) % slides.length;
+        updateSlider(nextIndex, 'next');
+    }, 4000);
 };
 
 const stopTimer = () => {
@@ -103,10 +132,8 @@ playPauseBtn.addEventListener('click', () => {
 
 const rightBtn = document.querySelector('.right-btn');
 rightBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateSlider(currentIndex);
-
-    // Reset timer if not paused
+    let nextIndex = (currentIndex + 1) % slides.length;
+    updateSlider(nextIndex, 'next'); // Pass 'next'
     if (!isPaused) startTimer();
 });
 
@@ -121,12 +148,42 @@ navigationButtons.forEach((button, index) => {
 const leftBtn = document.querySelector('.left-btn');
 
 leftBtn.addEventListener('click', () => {
-    // If at index 0, jump to the last image (slides.length - 1). 
-    // Otherwise, just subtract 1.
-    currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
-
-    updateSlider(currentIndex);
-
-    // Reset timer if not paused
+    let prevIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+    updateSlider(prevIndex, 'prev'); // Pass 'prev'
     if (!isPaused) startTimer();
 });
+
+const btnsContainer = document.querySelector('.btns-container');
+
+const createThumbnails = () => {
+    // Clear existing placeholder buttons
+    btnsContainer.innerHTML = '';
+
+    slides.forEach((slide, index) => {
+        const btn = document.createElement('button');
+        // Create an image element inside the button
+        btn.innerHTML = `<img src="${slide.img}" style="width: 100px; height: 50px; object-fit: cover; border-radius: 4px;">`;
+
+        btn.addEventListener('click', () => {
+            updateSlider(index);
+            if (!isPaused) startTimer();
+        });
+        btnsContainer.appendChild(btn);
+    });
+};
+
+createThumbnails();
+
+
+const masyvas =
+    [
+        {
+            'name': ['Paulius']
+        }
+    ];
+
+masyvas.forEach(item => {
+    console.log(item.name[0]);
+});
+
+console.log(masyvas[0].name[0]);
